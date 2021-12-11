@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import api from "../util/api"
 import Product from "../components/Product"
 import NavBar from "../components/NavBar/NavBar"
+import Hero from "../components/Hero/Hero"
 
 export default function Home () {
   const [loading, setLoading] = useState(true)
@@ -25,6 +26,7 @@ export default function Home () {
   return (
     <>
       <NavBar />
+      <Hero />
       <h1>HomePage</h1>
 
       {loading
