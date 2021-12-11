@@ -1,0 +1,20 @@
+.container{
+}
+.product-card{
+    background-color: dimgray;
+    color: #fff;
+    width: 200px;
+    border-radius: 5px;
+    margin: 10px 10px 20px;
+}
+
+.product-card .title{
+    font-size: 125%;
+}
+
+.flex{
+
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+}
