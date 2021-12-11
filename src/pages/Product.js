@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import api from "../util/api"
+import NavBar from "../components/NavBar/NavBar"
 
 export default function Product () {
   const { id } = useParams()
@@ -30,6 +31,7 @@ export default function Product () {
 
   return (
     <>
+    <NavBar />
       {loading
         ? 'Loading'
         : data
