@@ -14,7 +14,7 @@ align-items: center;
 
 const Title = styled.h1`
     font-size: 3rem;
-    color: #000;
+    color: #00688B;
     text-align: center;
     margin: 1rem;
     animation: fadeIn 3s;
