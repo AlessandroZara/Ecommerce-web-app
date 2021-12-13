@@ -20,10 +20,7 @@ export default function Product ({
       <div className="product__name">{data.name}</div>
       {console.log(data.name)}
       <div className="product__img">
-        <Image src="https://via.placeholder.com/200.png/09f/fff" fluid
-         
-        
-        />
+        <Image src="https://via.placeholder.com/200.png/09f/fff" fluid/>
       </div>
       {/* counter quantità */}
 

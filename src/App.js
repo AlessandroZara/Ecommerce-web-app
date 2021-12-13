@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Product from './pages/Product'
 
+
 function App() {
   return (
     // provider carrello
@@ -32,7 +33,7 @@ function App() {
 
         <Route
           path="/cart"
-          element={<></>}
+          element={<Cart />}
         />
 
         <Route
