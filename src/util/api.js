@@ -11,6 +11,12 @@ const api = {
   },
   addToCart: (id, data) => {
     return axiosInstance.post(`addToCart/${id}`, data)
+  },
+  getCart: () => {
+    return axiosInstance.get(`cart`)
+  },
+  updateCart: (id) => {
+    return axiosInstance.post(`updateCart/${id}`)
   }
 }
 
