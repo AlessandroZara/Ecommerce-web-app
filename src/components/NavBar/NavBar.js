@@ -1,7 +1,14 @@
 import { Container, Nav, Navbar} from "react-bootstrap"
+import {useContext} from 'react'
+import {CartContext} from "../../context/Cart"
 import './NavBar.css'
 
 function NavBar(){
+        const {cart}= useContext(CartContext)
+        const sumProduct= cart.reduce((prev,current)=>{
+            return prev + current.quantity
+        },0);
+
     return <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
         <Navbar.Brand href="/"
@@ -24,7 +31,7 @@ function NavBar(){
                 Log-in
             </Nav.Link>
             <Nav.Link eventKey={2} href="/thankyoupage">
-                Cart
+                Cart({sumProduct})
             </Nav.Link>
             </Nav>
         </Navbar.Collapse>

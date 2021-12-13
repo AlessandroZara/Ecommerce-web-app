@@ -1,16 +1,7 @@
 // https://placeholder.com/ per le immagini
-// import { Image } from "react-bootstrap"
-import styled from "styled-components"
-import {useState} from "react"
+import {Button,Image}from 'react-bootstrap'
+import {CartState} from "../context/Cart"
 
-
-const Image = styled.img`
-margin-top: 10px;
-`;
-
-const Button = styled.button`
-
-`;
 
 
 export default function Product ({
@@ -20,17 +11,26 @@ export default function Product ({
   /* add to cart
   chiamare setCart dal context
   */
-
+  
+   
+  const {addToCart}=CartState()
   return (
     <div className="product">
       {/* visualizzazione dati */}
       <div className="product__name">{data.name}</div>
-      
-     
-
+      {console.log(data.name)}
+      <div className="product__img">
+        <Image src="https://images.pexels.com/photos/2541310/pexels-photo-2541310.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" fluid
+         width="200"
+         height="200"
+        
+        />
+      </div>
       {/* counter quantità */}
 
       {/* bottone aggiunta carrello */}
+      
+      <Button onClick={()=> {addToCart(data)}}> Aggiungi a Carrello</Button>
     </div>
   )
 }

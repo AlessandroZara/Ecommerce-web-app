@@ -1,32 +1,8 @@
-import { useEffect, useState } from "react"
-import api from "../util/api"
-import Product from "../components/Product"
-import NavBar from "../components/NavBar/NavBar"
-import Hero from "../components/Hero/Hero"
-import styled from "styled-components"
+
+
 
 export default function Home () {
-  const [loading, setLoading] = useState(true)
-  const [data, setData] = useState([])
-
-  
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await api.getProducts()
-
-        console.log(res)
-        setData(res.data.products)
-      } catch (err) {
-        console.warn(err)
-      } finally {
-        setLoading(false)
-      }
-    })()
-  }, [])
-
-  const Container = styled.div`
+    const Container = styled.div`
     display: flex;
     background: rgb(198,238,235);
     background: linear-gradient(90deg, rgba(198,238,235,1) 0%, rgba(142,178,221,1) 100%);
@@ -75,23 +51,7 @@ export default function Home () {
       <NavBar />
       <Hero />
       <Container>
-      {loading
-        ? 'Loading'
-        : data.length
-          ?
-          <Products>
-            {data.map(product => (
-              <Product
-                key={product.id}
-                data={product}
-               
-              />
-              
-            ))}
-            
-          </Products>
-          : 'No products found'
-      }
+      
       </Container>
       <Footer>
       <Title>E-commerce</Title>
@@ -100,3 +60,4 @@ export default function Home () {
     </>
   )
 }
+
