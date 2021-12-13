@@ -1,24 +1,52 @@
-import { createContext } from "react";
+import api from '../util/api'
+import {createContext, useContext, useState,useEffect} from 'react'
 
-export const CartContext = createContext()
 
-export default function CartProvider ({ children }) {
-  // const [cart, setCart] = ([])
+export const CartContext=createContext();
 
-  /* creare funzione updateCart (refresha carrello)
-    - chiamare appena avviata app
-    - chiamare quando 
-  */
+const CartProvider=({children})=>{
+const [cart,setCart]=useState([])
 
-  /*
-  aggiornamento con chiamate (addToCart, updateCart, emptyCart):
-  1. update manuale array cart (lenta)
-  2. get carrello (veloce)
-  */
-
-  return (
-    <CartContext.Provider value={null}>
-      {children}
-    </CartContext.Provider>
-  )
+const productApi =async()=>{
+  const res=  await api.getCart()
+    console.log(res)
+    setCart(res.data.products)
+    
 }
+
+ const addToCart = async (product)=>{
+  await api.addToCart(product.id)
+  setCart([...cart,product])
+}
+
+const update = async ()=>{
+  await api.updateCart()
+}
+
+useEffect(() => {
+    productApi()
+    
+},[]);
+
+return (
+<CartContext.Provider value={{addToCart,setCart,cart,update}}>
+{children}
+</CartContext.Provider>
+)
+}
+
+export const CartState=()=>{
+const context=useContext(CartContext);
+if(context===undefined)
+{
+throw Error("Context deve essere usato dentro Cart Provider")
+}
+return context
+}
+
+
+export default CartProvider;
+
+
+ 
+ 

@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 // import Fetch from './Fetch';
 import reportWebVitals from './reportWebVitals';
+import Context from './context/Cart';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Context>
+      <App />
+      </Context>
     {/* <Fetch /> */}
   </React.StrictMode>,
   document.getElementById('root')
