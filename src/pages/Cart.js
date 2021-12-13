@@ -1,13 +1,15 @@
 import NavBar from "../components/NavBar/NavBar"
 import styled from "styled-components";
 import Product from "../components/Product";
+import { Button, Container, ListGroup } from "react-bootstrap";
+import '../App.css'
 
 export default function Cart () {
-    const Container = styled.div`
+    const Page = styled.div`
     display: flex;
     background: rgb(198,238,235);
     background: linear-gradient(90deg, rgba(198,238,235,1) 0%, rgba(142,178,221,1) 100%);
-    height: 50vh;
+    min-height: 50vh;
   `;
 
 
@@ -18,7 +20,7 @@ export default function Cart () {
     align-items: center;
     background: #191919;
     color: white;
-    height: 8vh;
+    min-height: 8vh;
     font-size: 1.5rem;
     font-weight: bold;
     `;
@@ -38,9 +40,20 @@ export default function Cart () {
   return (
     <>
       <NavBar />
-      <Container>
+      <Page>
+        <Container>
+          <h1>Carrello</h1>
+          <ListGroup as="ul">
+            <ListGroup.Item as="li">Prodotto<div><Button>Rimuovi articolo</Button><Button>+</Button>Quantità: 1<Button>-</Button></div></ListGroup.Item>
+            <ListGroup.Item as="li">Prodotto<div><Button>Rimuovi articolo</Button><Button>+</Button>Quantità: 1<Button>-</Button></div></ListGroup.Item>
+            <ListGroup.Item as="li">Prodotto<div><Button>Rimuovi articolo</Button><Button>+</Button>Quantità: 1<Button>-</Button></div></ListGroup.Item>
+            <ListGroup.Item as="li">Prodotto<div><Button>Rimuovi articolo</Button><Button>+</Button>Quantità: 1<Button>-</Button></div></ListGroup.Item>
+          </ListGroup>
+          <Button id="buy">Compra</Button>
+        </Container>
         
-      </Container>
+
+      </Page>
       <Footer>
       <Title>E-commerce</Title>
       <Text>Copyright 2021</Text>

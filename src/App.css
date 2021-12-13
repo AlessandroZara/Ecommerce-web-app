@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+li.list-group-item{
+  display: flex;
+  justify-content: space-between;
+}
+
+li.list-group-item:hover {
+  background-color: #e7effc;
+}
+
+button#buy {
+  float: right;
+}
