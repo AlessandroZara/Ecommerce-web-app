@@ -6,6 +6,7 @@ import Login from './pages/Login'
 // import Product from './pages/Product'
 import NotFound from './pages/NotFound'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Product from './pages/Product'
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
         <Route
           path="/"
           element={<Home/>}
+        />
+        <Route
+          path="/prodotto"
+          element={<Product/>}
         />
 
         <Route

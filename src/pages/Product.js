@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import api from "../util/api"
 import NavBar from "../components/NavBar/NavBar"
+import { Col, Container, Image, Row } from "react-bootstrap"
 
 export default function Product () {
   const { id } = useParams()
@@ -30,7 +31,7 @@ export default function Product () {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <>
+    <Container>
     <NavBar />
       {loading
         ? 'Loading'
@@ -41,6 +42,16 @@ export default function Product () {
           </>
           : 'Product not found'
       }
-    </>
+      
+      <Row>
+        <Col sm={8}><Image src="https://images.pexels.com/photos/78778/fire-lighter-the-flame-firefox-78778.jpeg" alt="" fluid /></Col>
+        <Col sm={4}>
+          <h1>Prodotto</h1>
+          Price:
+          <h4>30 &euro;</h4>
+          <p>Quantità disponibile: 4 pezzi</p>
+        </Col>
+      </Row>
+    </Container>
   )
 }
