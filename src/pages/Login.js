@@ -7,7 +7,9 @@ export default function Login () {
         
         <NavBar />
         <Container>
-            <SignUpForm />    
+            <h1>Login</h1>
+            <p>Bentornato, inserisci i tuoi dati per loggarti</p>
+            <SignUpForm />
         </Container>
     </>
 }
