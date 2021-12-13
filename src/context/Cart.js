@@ -11,17 +11,25 @@ const productApi =async()=>{
   const res=  await api.getCart()
     console.log(res)
     setCart(res.data.products)
+    
 }
 
-  const addToCart = async (productId)=>{
-  await api.addToCart(productId)
+ const addToCart = async (product)=>{
+  await api.addToCart(product.id)
+  setCart([...cart,product])
+}
+
+const update = async ()=>{
+  await api.updateCart()
 }
 
 useEffect(() => {
     productApi()
+    
 },[]);
+
 return (
-<CartContext.Provider value={{addToCart,setCart,cart}}>
+<CartContext.Provider value={{addToCart,setCart,cart,update}}>
 {children}
 </CartContext.Provider>
 )
@@ -35,6 +43,7 @@ throw Error("Context deve essere usato dentro Cart Provider")
 }
 return context
 }
+
 
 export default CartProvider;
 

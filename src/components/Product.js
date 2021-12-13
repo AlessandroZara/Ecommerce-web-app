@@ -1,6 +1,6 @@
 // https://placeholder.com/ per le immagini
 import {Button,Image}from 'react-bootstrap'
-import CartProvider from "../context/Cart"
+import {CartState} from "../context/Cart"
 
 
 
@@ -11,10 +11,8 @@ export default function Product ({
   chiamare setCart dal context
   */
   
- 
-    
-  
-  
+   
+  const {addToCart}=CartState()
   return (
     <div className="product">
       {/* visualizzazione dati */}
@@ -31,7 +29,7 @@ export default function Product ({
 
       {/* bottone aggiunta carrello */}
       
-      <Button onClick={CartProvider}> Aggiungi a Carrello</Button>
+      <Button onClick={()=> {addToCart(data)}}> Aggiungi a Carrello</Button>
     </div>
   )
 }
