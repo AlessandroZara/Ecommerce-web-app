@@ -6,6 +6,8 @@ export default function SignUpForm(){
     const [password,setPassword]=useState("")
     const [error,setError]=useState("")
     const [success,setSuccess]=useState("")
+    const [user,setUser]=useState("")
+    const [hold,setHold]=useState(true)
 
     const checkInput=()=>{
         if(email.length>40){
@@ -22,7 +24,7 @@ export default function SignUpForm(){
         const endPoint=baseUrl+"api/users"
 
         const payload={ //dati che ci serve ricevere
-            email,
+            user,
             password
         }
 
@@ -35,6 +37,7 @@ export default function SignUpForm(){
             console.log("ID utente: ", res.data.id)
             console.log("Status: ", res.status)
             setSuccess(res.status)
+            setHold(false)
             
         } catch (e) {
             console.log("Errore: ", e)
@@ -51,12 +54,24 @@ export default function SignUpForm(){
         setPassword(newValue)
     }
 
+    const handleUserChange = (obj) =>{
+        const newValue = obj.target.value
+        setUser(newValue)
+    }
+
     return <div>
         {error && <p>Errore {error}</p>}
-        <div>Per inviare la chiamata POST username: morfeus + password: leader</div>
-        <div>Lo status della chiamata è: {success}</div>
-        <input onChange={handleChange} value={email} placeholder={"Email"}/>
+        
+        <input type={"text"} onChange={handleUserChange} value={user} placeholder={"Username"}/>
         <input type={"password"} onChange={handlePasswordChange} value={password} placeholder={"Password"}/>
         <button onClick={handleSignUp} >Send</button>
+        {hold && <div>Inserisci nome utente e password</div>}
+        
+        {success && <>
+            <div>Piacere di rivederti {user}</div>
+            <div>Lo status della chiamata è: {success}</div>
+        </>
+        }
+        
     </div>
 }
