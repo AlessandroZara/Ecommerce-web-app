@@ -16,7 +16,7 @@ const productApi =async()=>{
 
  const addToCart = async (product)=>{
   await api.addToCart(product.id)
-  setCart([...cart,product])
+  productApi()
 }
 
 const update = async ()=>{

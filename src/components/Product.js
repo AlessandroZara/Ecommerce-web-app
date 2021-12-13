@@ -20,9 +20,8 @@ export default function Product ({
       <div className="product__name">{data.name}</div>
       {console.log(data.name)}
       <div className="product__img">
-        <Image src="https://images.pexels.com/photos/2541310/pexels-photo-2541310.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" fluid
-         width="200"
-         height="200"
+        <Image src="https://via.placeholder.com/200.png/09f/fff" fluid
+         
         
         />
       </div>

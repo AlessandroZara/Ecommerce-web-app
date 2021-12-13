@@ -30,7 +30,7 @@ export default function Home () {
     display: flex;
     background: rgb(198,238,235);
     background: linear-gradient(90deg, rgba(198,238,235,1) 0%, rgba(142,178,221,1) 100%);
-    height: 50vh;
+    min-height: 50vh;
   `;
 
   const Products = styled.div`
