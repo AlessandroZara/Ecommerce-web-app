@@ -84,6 +84,7 @@ export default function Home () {
               <Product
                 key={product.id}
                 data={product}
+                
               />
             ))}
           </Products>
