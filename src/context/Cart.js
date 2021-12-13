@@ -29,11 +29,11 @@ const productApi =async()=>{
     
   try {
     await api.addToCart(product.id)
-  productApi()
-  }
-  catch(err) {
-    if(err.response){
-      console.warn(err.response.data)
+      productApi()
+    }
+    catch(err) {
+      if(err.response){
+        console.warn(err.response.data)
     }
     else{
       console.warn(err)

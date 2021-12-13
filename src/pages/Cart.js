@@ -1,7 +1,8 @@
+import NavBar from "../components/NavBar/NavBar"
+import styled from "styled-components";
+import Product from "../components/Product";
 
-
-
-export default function Home () {
+export default function Cart () {
     const Container = styled.div`
     display: flex;
     background: rgb(198,238,235);
@@ -9,18 +10,6 @@ export default function Home () {
     height: 50vh;
   `;
 
-  const Products = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    margin-top: 2rem;
-     & > * {
-      margin: 1.5rem;
-    }
-    color: #00688B;
-    font-size: 1.5rem;
-    font-weight: bold;
-    `;
 
  const Footer = styled.div`
     display: flex;
@@ -49,9 +38,8 @@ export default function Home () {
   return (
     <>
       <NavBar />
-      <Hero />
       <Container>
-      
+        
       </Container>
       <Footer>
       <Title>E-commerce</Title>

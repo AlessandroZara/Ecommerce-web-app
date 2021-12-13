@@ -30,7 +30,7 @@ function NavBar(){
             <Nav.Link eventKey={2} href="/login">
                 Log-in
             </Nav.Link>
-            <Nav.Link eventKey={2} href="/thankyoupage">
+            <Nav.Link eventKey={2} href="/cart">
                 Cart({sumProduct})
             </Nav.Link>
             </Nav>
