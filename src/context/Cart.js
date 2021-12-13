@@ -8,15 +8,38 @@ const CartProvider=({children})=>{
 const [cart,setCart]=useState([])
 
 const productApi =async()=>{
-  const res=  await api.getCart()
+  try {
+    const res=  await api.getCart()
     console.log(res)
     setCart(res.data.products)
+  }
+  catch(err) {
+    if(err.response){
+      console.warn(err.response.data)
+    }
+    else{
+      console.warn(err)
+    }
+  }
+  
     
 }
 
  const addToCart = async (product)=>{
-  await api.addToCart(product.id)
+    
+  try {
+    await api.addToCart(product.id)
   productApi()
+  }
+  catch(err) {
+    if(err.response){
+      console.warn(err.response.data)
+    }
+    else{
+      console.warn(err)
+    }
+  }
+  
 }
 
 const update = async ()=>{
