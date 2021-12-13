@@ -2,13 +2,15 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import api from "../util/api"
 import NavBar from "../components/NavBar/NavBar"
-import { Col, Container, Image, Row } from "react-bootstrap"
+import { Button, Col, Container, Image, Row } from "react-bootstrap"
+import {CartState} from "../context/Cart"
 
 export default function Product () {
   const { id } = useParams()
 
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null)
+  const {addToCart}=CartState()
 
   useEffect(() => {
     (async () => {
@@ -50,6 +52,7 @@ export default function Product () {
           Price:
           <h4>30 &euro;</h4>
           <p>Quantità disponibile: 4 pezzi</p>
+          <Button onClick={()=> {addToCart(data)}}> Aggiungi a Carrello</Button>
         </Col>
       </Row>
     </Container>

@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Product from './pages/Product'
+import Cart from './pages/Cart'
 
 
 function App() {
