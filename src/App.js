@@ -8,7 +8,7 @@ import NotFound from './pages/NotFound'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Product from './pages/Product'
 import Cart from './pages/Cart'
-
+import Thanks from "./pages/ThankYouPage"
 
 function App() {
   return (
@@ -35,6 +35,11 @@ function App() {
         <Route
           path="/cart"
           element={<Cart />}
+        />
+
+            <Route
+          path="/thankyoupage"
+          element={<Thanks/>}
         />
 
         <Route

@@ -41,10 +41,44 @@ const productApi =async()=>{
   }
   
 }
-
-const update = async ()=>{
-  await api.updateCart()
+  
+const Delete = async (product)=>{
+    
+  try {
+    await api.updateCart(product.id,{quantity:(product.quantity = 0)})
+      productApi()
+      
+    }
+    catch(err) {
+      if(err.response){
+        console.warn(err.response.data)
+    }
+    else{
+      console.warn(err)
+    }
+  }
+  
 }
+
+const ThankDelete = async (product)=>{
+    
+  try {
+    
+     await api.checkoutCart()
+    
+           setCart([])
+              }
+    catch(err) {
+      if(err.response){
+        console.warn(err.response.data)
+    }
+    else{
+      console.warn(err)
+    }
+  }
+  
+}
+
 
 useEffect(() => {
     productApi()
@@ -52,7 +86,7 @@ useEffect(() => {
 },[]);
 
 return (
-<CartContext.Provider value={{addToCart,setCart,cart,update}}>
+<CartContext.Provider value={{addToCart,setCart,cart,Delete,ThankDelete}}>
 {children}
 </CartContext.Provider>
 )

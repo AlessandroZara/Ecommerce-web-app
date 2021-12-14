@@ -8,13 +8,14 @@ export default function Product({
   data,
   showImage, //questa è true o false
   showButton, //questa è true o false
-  showButtonCart, //questa è true o false
+  showButtonCart,
+   //questa è true o false
 }) {
   /* add to cart
   chiamare setCart dal context
   */
-
-  const { addToCart } = CartState();
+  
+  const { addToCart,Delete } = CartState();
   return (
     <Col>
       <Card>
