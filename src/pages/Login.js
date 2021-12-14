@@ -31,7 +31,7 @@ export default function Login() {
   return (
     <>
       <NavBar />
-      <Container>
+      <Container className="form">
       <Form onSubmit={(e)=>{
          e.preventDefault();
          handleLogin()}}>
