@@ -5,6 +5,7 @@ import { LoginState } from "../context/contextLogIn";
 import api from "../util/api.js";
 import {useNavigate} from "react-router-dom";
 import {Container} from "react-bootstrap";
+import styled from "styled-components";
 import "./Login.css";
 
 export default function Login() {
@@ -28,6 +29,29 @@ export default function Login() {
       }
     }
   };
+
+  const Footer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #191919;
+    color: white;
+    height: 8vh;
+    font-size: 1.5rem;
+    font-weight: bold;
+    `;
+
+    const Title = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    `;
+
+    const Text = styled.div`
+    font-size: 0.8rem;
+    `;
+
 
   return (
     <>
@@ -56,6 +80,10 @@ export default function Login() {
         </Button>
       </Form>
       </Container>
+      <Footer>
+      <Title>E-commerce</Title>
+      <Text>Copyright 2021</Text>
+      </Footer>
     </>
   );
 }
