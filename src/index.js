@@ -5,12 +5,14 @@ import App from './App';
 // import Fetch from './Fetch';
 import reportWebVitals from './reportWebVitals';
 import Context from './context/Cart';
-
+import LoginContext from "./context/contextLogIn"
 ReactDOM.render(
   <React.StrictMode>
+    <LoginContext>
       <Context>
       <App />
       </Context>
+    </LoginContext>
     {/* <Fetch /> */}
   </React.StrictMode>,
   document.getElementById('root')

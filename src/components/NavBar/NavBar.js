@@ -1,6 +1,8 @@
 import { Container, Nav, Navbar} from "react-bootstrap"
 import {useContext} from 'react'
 import {CartContext} from "../../context/Cart"
+import {LoginContext} from "../../context/contextLogIn"
+import {Link} from "react-router-dom"
 import './NavBar.css'
 
 function NavBar(){
@@ -9,10 +11,13 @@ function NavBar(){
             return prev + current.quantity
         },0);
 
+        const {user,setUser}= useContext(LoginContext)
+        
     return <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-        <Navbar.Brand href="/"
-        ><img
+       <Link to="/"> <Navbar.Brand 
+        >
+            <img
         src="https://www.crearelogo.it/wp-content/uploads/louis-vuitton-logo-300x223.jpg"
         width="40"
         height="40"
@@ -20,19 +25,29 @@ function NavBar(){
         alt="React Bootstrap logo"
       />
             </Navbar.Brand>
+            </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/prodotto">Prodotto</Nav.Link>
+            <Link to="/"> <Nav.Link as="span">Home</Nav.Link></Link>
+            <Link to="/prodotto"> <Nav.Link as="span">Prodotto</Nav.Link></Link>
             </Nav>
             <Nav>
-            <Nav.Link eventKey={2} href="/login">
+                {user ? <Nav.Link onClick={()=>{setUser(null)}}>
+                Log-out
+            </Nav.Link>
+            :
+            <Link to="/login"><Nav.Link as="span" >
                 Log-in
             </Nav.Link>
-            <Nav.Link eventKey={2} href="/cart">
+            </Link>
+            }
+            {user ?
+           <Link to="/cart"> <Nav.Link as="span">
                 Cart({sumProduct})
             </Nav.Link>
+            </Link>
+           :null }
             </Nav>
         </Navbar.Collapse>
         </Container>

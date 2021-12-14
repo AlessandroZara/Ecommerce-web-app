@@ -23,6 +23,9 @@ const api = {
   },
   checkoutCart: () => {
     return axiosInstance.get(`checkout`)
+  },
+  login: (email,password) => {
+    return axiosInstance.post(`login`,{email:email,password:password})
   }
 
 }

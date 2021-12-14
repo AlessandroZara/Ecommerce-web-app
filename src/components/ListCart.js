@@ -6,20 +6,30 @@ import {Link} from "react-router-dom"
 export default function ListCart({
     data,
 }) {
-  const { cart,ThankDelete} = CartState();
+  const { cart,ThankDelete,Empty} = CartState();
   return (
+    
     <>
+    
       <ListGroup as="ul">
         {cart.map((product) => (
           <><Product key={product.id} data={product} showButtonCart/></>
         ))}
          
       </ListGroup>
-      <br />
+      { cart.length > 0 ? 
+      <> 
       <Link to="/thankyoupage"><Button id="buy" onClick={() => {
                 ThankDelete(data);
               }}>Compra</Button></Link>
+              <Button id="buy" onClick={() => {
+                Empty(data);
+              }}>Svuota Carrello</Button>
+              </>
+              :null }
+          
     </>
+    
   );
 }
 
