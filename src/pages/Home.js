@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import api from "../util/api"
-import Product from "../components/Product"
 import NavBar from "../components/NavBar/NavBar"
 import Hero from "../components/Hero/Hero"
 import styled from "styled-components"
+import {Row,Container} from "react-bootstrap"
+import Product from "../components/Product"
 
 export default function Home () {
   const [loading, setLoading] = useState(true)
@@ -26,25 +27,15 @@ export default function Home () {
     })()
   }, [])
 
-  const Container = styled.div`
-    display: flex;
-    background: rgb(198,238,235);
-    background: linear-gradient(90deg, rgba(198,238,235,1) 0%, rgba(142,178,221,1) 100%);
-    height: 50vh;
-  `;
+  // const Container = styled.div`
+  //   display: flex;
+  //   background: rgb(198,238,235);
+  //   background: linear-gradient(90deg, rgba(198,238,235,1) 0%, rgba(142,178,221,1) 100%);
+  //   min-height: 50vh;
+    
+  // `;
 
-  const Products = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    margin-top: 2rem;
-     & > * {
-      margin: 1.5rem;
-    }
-    color: #00688B;
-    font-size: 1.5rem;
-    font-weight: bold;
-    `;
+  
 
  const Footer = styled.div`
     display: flex;
@@ -79,17 +70,19 @@ export default function Home () {
         ? 'Loading'
         : data.length
           ?
-          <Products>
+          <Row xs={1} md={5} className="g-4">
+            
             {data.map(product => (
               <Product
                 key={product.id}
                 data={product}
-               
+                showImage
+                showButton
               />
               
             ))}
             
-          </Products>
+            </Row>
           : 'No products found'
       }
       </Container>
@@ -100,3 +93,6 @@ export default function Home () {
     </>
   )
 }
+
+
+ 
