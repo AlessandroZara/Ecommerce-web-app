@@ -37,7 +37,7 @@ export default function Product({
             </Button>
           ) : null}
           {showButtonCart ? (
-            <div>
+            <div id="bottonCart">
               <Button>Rimuovi articolo</Button>
              <Counter/>
             </div>
