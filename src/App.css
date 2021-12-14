@@ -37,12 +37,29 @@
   }
 }
 
-li.list-group-item{
+.container{
+  margin: 30px 0;
+}
+
+div#bottonCart{
   display: flex;
   justify-content: space-between;
 }
 
-li.list-group-item:hover {
+div#bottonCart .row{
+  justify-content: end;
+  align-items: center;
+}
+
+div#bottonCart .row button{
+  width: 40px;
+  margin: 0 5px;
+}
+div#bottonCart .row>div{
+  display: contents;
+}
+
+div#bottonCart:hover {
   background-color: #e7effc;
 }
 
