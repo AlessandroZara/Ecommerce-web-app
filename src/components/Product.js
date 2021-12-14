@@ -41,7 +41,10 @@ export default function Product({
           ) : null}
           {showButtonCart ? (
             <Row className="row">
-              <Button>X</Button><Counter/>
+              <Button
+              onClick={() => {
+              Delete(data);
+              }}>X</Button><Counter/>
             </Row>
           ) : null}
         </Card.Body>
