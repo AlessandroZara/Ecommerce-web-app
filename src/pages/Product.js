@@ -33,28 +33,29 @@ export default function Product () {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Container>
+    <>
     <NavBar />
-      {loading
-        ? 'Loading'
-        : data
-          ?
-          <>
-            <h1>{data.name}</h1>
-          </>
-          : 'Product not found'
-      }
-      
-      <Row>
-        <Col sm={8}><Image src="https://images.pexels.com/photos/78778/fire-lighter-the-flame-firefox-78778.jpeg" alt="" fluid /></Col>
-        <Col sm={4}>
-          <h1>Prodotto</h1>
-          Price:
-          <h4>30 &euro;</h4>
-          <p>Quantità disponibile: 4 pezzi</p>
-          <Button onClick={()=> {addToCart(data)}}> Aggiungi a Carrello</Button>
-        </Col>
-      </Row>
+    <Container>
+    {loading
+      ? 'Loading'
+      : data.length
+        ?
+        <Row xs={1} md={5} className="g-4">
+          
+          {data.map(product => (
+            <Product
+              key={product.id}
+              data={product}
+              showImage
+              showButton
+            />
+            
+          ))}
+          
+          </Row>
+        : 'No products found'
+    }
     </Container>
+      </>
   )
 }
