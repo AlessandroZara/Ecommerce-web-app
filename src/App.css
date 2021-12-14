@@ -66,3 +66,7 @@ div#bottonCart:hover {
 button#buy {
   float: right;
 }
+
+nav .container{
+  margin: 0 auto;
+}
