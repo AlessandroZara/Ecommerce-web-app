@@ -1,9 +1,12 @@
 import { CartState } from "../context/Cart";
 import { Button, ListGroup } from "react-bootstrap";
 import Product from "./Product";
+import {Link} from "react-router-dom"
 
-export default function ListCart() {
-  const { cart } = CartState();
+export default function ListCart({
+    data,
+}) {
+  const { cart,ThankDelete} = CartState();
   return (
     <>
       <ListGroup as="ul">
@@ -13,8 +16,10 @@ export default function ListCart() {
          <br />
          <Button id="buy">Compra</Button>
       </ListGroup>
-     
-      
+      <br />
+      <Link to="/thankyoupage"><Button id="buy" onClick={() => {
+                ThankDelete(data);
+              }}>Compra</Button></Link>
     </>
   );
 }

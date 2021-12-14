@@ -15,9 +15,16 @@ const api = {
   getCart: () => {
     return axiosInstance.get(`cart`)
   },
-  updateCart: (id) => {
-    return axiosInstance.post(`updateCart/${id}`)
+  updateCart: (id,data) => {
+    return axiosInstance.post(`updateCart/${id}`,data)
+  },
+  emptyCart: () => {
+    return axiosInstance.get(`emptyCart `)
+  },
+  checkoutCart: () => {
+    return axiosInstance.get(`checkout`)
   }
+
 }
 
 window.api = api
