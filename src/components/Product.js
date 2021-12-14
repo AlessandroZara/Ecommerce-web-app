@@ -24,8 +24,9 @@ export default function Product({
             src="https://via.placeholder.com/200.png/09f/fff"
           />
         ) : null}
-        
+        {/*{showButtonCart ? da fare con un ternario */}
         <Card.Body id="bottonCart">
+        {/*: <Card.Body> da fare con un ternario */}
           <Card.Title>{data.name}</Card.Title>
           {showButton ? (
             <Button
