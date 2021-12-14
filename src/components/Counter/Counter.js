@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { Button } from "react-bootstrap";
 
 
 export default function Counter(){
@@ -16,9 +17,9 @@ export default function Counter(){
 
     return(
         <div>
-        <button onClick={addCounter}>+</button>
+        <Button onClick={addCounter}>+</Button>
         <span>{count}</span>
-        <button onClick={negCounter}>-</button>
+        <Button onClick={negCounter}>-</Button>
         </div>
 
     )
