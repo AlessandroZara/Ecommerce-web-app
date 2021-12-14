@@ -1,8 +1,11 @@
 // https://placeholder.com/ per le immagini
 import { Button, Image, Row } from "react-bootstrap";
 import { CartState } from "../context/Cart";
+import { LoginState } from "../context/contextLogIn";
 import { Col, Card } from "react-bootstrap";
 import Counter from "../components/Counter/Counter";
+import {useState} from "react"
+
 
 export default function Product({
   data,
@@ -14,8 +17,9 @@ export default function Product({
   /* add to cart
   chiamare setCart dal context
   */
-  
+  const [showError,setShowError] = useState(false)
   const { addToCart,Delete } = CartState();
+  const { user } = LoginState();
   return (
     <Col>
       <Card>
@@ -32,13 +36,23 @@ export default function Product({
           {showButton ? (
             <Button
               onClick={() => {
+                if(user){
                 addToCart(data);
+                }
+                else {
+                  setShowError(true)
+                }
               }}
             >
               {" "}
               Aggiungi a Carrello
             </Button>
+            
           ) : null}
+         {showError ?
+          <p>Devi Essere Loggato per acquistare</p>
+        :null}
+         
           {showButtonCart ? (
             <Row className="row">
               <Button
