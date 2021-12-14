@@ -3,7 +3,8 @@ import NavBar from "../components/NavBar/NavBar";
 import { Button,Form } from "react-bootstrap";
 import { LoginState } from "../context/contextLogIn";
 import api from "../util/api.js";
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
+import {Container} from "react-bootstrap";
 
 export default function Login() {
   const { setUser } = LoginState();
@@ -30,6 +31,7 @@ export default function Login() {
   return (
     <>
       <NavBar />
+      <Container>
       <Form onSubmit={(e)=>{
          e.preventDefault();
          handleLogin()}}>
@@ -52,6 +54,7 @@ export default function Login() {
           Submit
         </Button>
       </Form>
+      </Container>
     </>
   );
 }
