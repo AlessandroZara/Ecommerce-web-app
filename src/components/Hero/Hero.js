@@ -14,7 +14,13 @@ align-items: center;
 
 const Title = styled.h1`
     font-size: 3rem;
-    color: #00688B;
+    font-weight:600;
+    background: #46B8CF;
+    background: -webkit-radial-gradient(circle farthest-corner at center center, #46B8CF 0%, #000000 37%);
+    background: -moz-radial-gradient(circle farthest-corner at center center, #46B8CF 0%, #000000 37%);
+    background: radial-gradient(circle farthest-corner at center center, #46B8CF 0%, #000000 37%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-align: center;
     margin: 1rem;
     animation: fadeIn 3s;
