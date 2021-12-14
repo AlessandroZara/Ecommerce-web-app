@@ -5,6 +5,7 @@ import { LoginState } from "../context/contextLogIn";
 import api from "../util/api.js";
 import {useNavigate} from "react-router-dom";
 import {Container} from "react-bootstrap";
+import "./Login.css";
 
 export default function Login() {
   const { setUser } = LoginState();
