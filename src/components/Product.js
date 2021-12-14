@@ -1,12 +1,14 @@
 // https://placeholder.com/ per le immagini
 import { Button, Image } from "react-bootstrap";
 import { CartState } from "../context/Cart";
-import {Col, Card } from "react-bootstrap";
+import { Col, Card } from "react-bootstrap";
+import Counter from "../components/Counter/Counter";
 
 export default function Product({
   data,
   showImage, //questa è true o false
-  showButton,//questa è true o false
+  showButton, //questa è true o false
+  showButtonCart, //questa è true o false
 }) {
   /* add to cart
   chiamare setCart dal context
@@ -14,7 +16,7 @@ export default function Product({
 
   const { addToCart } = CartState();
   return (
-    <Col >
+    <Col>
       <Card>
         {showImage ? (
           <Card.Img
@@ -33,6 +35,12 @@ export default function Product({
               {" "}
               Aggiungi a Carrello
             </Button>
+          ) : null}
+          {showButtonCart ? (
+            <div>
+              <Button>Rimuovi articolo</Button>
+             <Counter/>
+            </div>
           ) : null}
         </Card.Body>
       </Card>

@@ -8,9 +8,9 @@ export default function Counter(){
         setCounter(prevCount=>prevCount+1)
     }
     function negCounter(){
+        if(count > 0){
         setCounter(prevCount=>prevCount-1)
-        if (prevCount=0)
-        return
+        }
     }
     
 
