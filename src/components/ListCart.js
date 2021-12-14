@@ -13,8 +13,7 @@ export default function ListCart({
         {cart.map((product) => (
           <><Product key={product.id} data={product} showButtonCart/></>
         ))}
-         <br />
-         <Button id="buy">Compra</Button>
+         
       </ListGroup>
       <br />
       <Link to="/thankyoupage"><Button id="buy" onClick={() => {
