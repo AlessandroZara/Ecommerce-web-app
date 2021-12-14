@@ -10,9 +10,11 @@ export default function ListCart() {
           <Product key={product.id} data={product}  />
           
         ))}
+         <br />
+         <Button id="buy">Compra</Button>
       </ListGroup>
-      <br />
-      <Button id="buy">Compra</Button>
+     
+      
     </>
   );
 }
