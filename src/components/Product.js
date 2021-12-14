@@ -1,5 +1,5 @@
 // https://placeholder.com/ per le immagini
-import { Button, Image } from "react-bootstrap";
+import { Button, Image, Row } from "react-bootstrap";
 import { CartState } from "../context/Cart";
 import { Col, Card } from "react-bootstrap";
 import Counter from "../components/Counter/Counter";
@@ -25,7 +25,9 @@ export default function Product({
             src="https://via.placeholder.com/200.png/09f/fff"
           />
         ) : null}
-        <Card.Body>
+        {/*{showButtonCart ? da fare con un ternario */}
+        <Card.Body id="bottonCart">
+        {/*: <Card.Body> da fare con un ternario */}
           <Card.Title>{data.name}</Card.Title>
           {showButton ? (
             <Button
@@ -38,12 +40,9 @@ export default function Product({
             </Button>
           ) : null}
           {showButtonCart ? (
-            <div>
-              <Button onClick={() => {
-                Delete(data);
-              }}>Rimuovi articolo</Button>
-             <Counter/>
-            </div>
+            <Row className="row">
+              <Button>X</Button><Counter/>
+            </Row>
           ) : null}
         </Card.Body>
       </Card>
