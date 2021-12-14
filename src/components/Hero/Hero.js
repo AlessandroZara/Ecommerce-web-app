@@ -22,6 +22,7 @@ const Title = styled.h1`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center;
+    padding-bottom:1rem;
     margin: 1rem;
     animation: fadeIn 3s;
     @keyframes fadeIn {
