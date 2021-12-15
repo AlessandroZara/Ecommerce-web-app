@@ -85,3 +85,6 @@ nav .container {
   );
   min-height: 80vh;
 }
+.lista-carrello > li{
+  list-style: none
+}

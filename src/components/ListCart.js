@@ -1,35 +1,49 @@
 import { CartState } from "../context/Cart";
 import { Button, ListGroup } from "react-bootstrap";
 import Product from "./Product";
-import {Link} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
-export default function ListCart({
-    data,
-}) {
-  const { cart,ThankDelete,Empty} = CartState();
+export default function ListCart({ data }) {
+  const navigate = useNavigate(); //navigate in input prende più parametri, guardare documentazione
+  const { cart, ThankDelete, Empty,sumPrice } = CartState();
+
+  
+
+
   return (
-    
     <>
-    
       <ListGroup as="ul">
         {cart.map((product) => (
-          <><Product key={product.id} data={product} showButtonCart/></>
+          <>
+            <Product key={product.id} data={product} showButtonCart />
+          </>
         ))}
-         
       </ListGroup>
-      { cart.length > 0 ? 
-      <> 
-      <Link to="/thankyoupage"><Button id="buy" onClick={() => {
-                ThankDelete(data);
-              }}>Compra</Button></Link>
-              <Button id="buy" onClick={() => {
-                Empty(data);
-              }}>Svuota Carrello</Button>
-              </>
-              :null }
-          
+     
+     <h3>{sumPrice.toFixed(2)} &euro;</h3>
+
+      {cart.length > 0 ? (
+        <>
+          <Button
+            id="buy"
+            onClick={() => {
+              ThankDelete();
+              console.log("sono in ListCard", cart);
+              navigate(`/thankyoupage`, { state: {cart,sumPrice} }); // "state" è un parametro dello useNavigate
+            }}
+          >
+            Compra
+          </Button>
+          <Button
+            id="buy"
+            onClick={() => {
+              Empty(data);
+            }}
+          >
+            Svuota Carrello
+          </Button>
+        </>
+      ) : null}
     </>
-    
   );
 }
-
