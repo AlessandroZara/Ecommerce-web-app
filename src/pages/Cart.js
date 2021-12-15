@@ -14,7 +14,7 @@ export default function Cart() {
       rgba(198, 238, 235, 1) 0%,
       rgba(142, 178, 221, 1) 100%
     );
-    min-height: 50vh;
+    min-height: 80vh;
   `;
 
   const Footer = styled.div`

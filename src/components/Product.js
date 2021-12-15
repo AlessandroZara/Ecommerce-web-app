@@ -20,6 +20,16 @@ export default function Product({
   const [showError,setShowError] = useState(false)
   const { addToCart,Delete } = CartState();
   const { user } = LoginState();
+
+    
+  const sendMessage = () => {
+      setTimeout(() => {
+        setShowError(false)
+    }, 2000);
+  };
+
+
+
   return (
     <Col>
       <Card>
@@ -41,6 +51,7 @@ export default function Product({
                 }
                 else {
                   setShowError(true)
+                  sendMessage()
                 }
               }}
             >
@@ -50,7 +61,7 @@ export default function Product({
             
           ) : null}
          {showError ?
-         <div>
+         <div >
            <p>Devi Essere Loggato per acquistare</p>
          </div>
           
