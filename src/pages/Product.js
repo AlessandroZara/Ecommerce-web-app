@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar/NavBar"
 import { Button, Col, Container, Image, Row } from "react-bootstrap"
 import {CartState} from "../context/Cart"
 
-export default function Product () {
+export default function Product (props) {
   const { id } = useParams()
 
   const [loading, setLoading] = useState(true)
@@ -43,22 +43,25 @@ export default function Product () {
           ? 'Loading'
           : data
             ?
-            <>
-              <h1>{data.name}</h1>
+            <> <Row>
+            <Col sm={8}><Image
+             src="https://via.placeholder.com/200.png/09f/fff"
+       /></Col>
+            <Col sm={4}>
+            <h1>{props.data.name}</h1>
+              Price:
+              <h4>30 &euro;</h4>
+              <p>{props.data.quantity}</p>
+              <Button onClick={()=> {addToCart(props.data)}}> Aggiungi a Carrello</Button>
+            </Col>
+          </Row>
+              
+
             </>
             : 'Product not found'
         }
   
-        <Row>
-          <Col sm={8}><Image src="https://images.pexels.com/photos/78778/fire-lighter-the-flame-firefox-78778.jpeg" alt="" fluid /></Col>
-          <Col sm={4}>
-            <h1>Prodotto</h1>
-            Price:
-            <h4>30 &euro;</h4>
-            <p>Quantità disponibile: 4 pezzi</p>
-            <Button onClick={()=> {addToCart(data)}}> Aggiungi a Carrello</Button>
-          </Col>
-        </Row>
+       
       </Container>
       </>
     )

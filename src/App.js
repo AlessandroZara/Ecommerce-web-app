@@ -45,10 +45,10 @@ function App() {
 
         <Route path="/login" element={<Login />} />
 
-        {/* <Route
+        <Route
           path="/product/:id"
           element={<Product/>}
-        /> */}
+        /> 
 
         <Route path="*" element={<NotFound />} />
       </Routes>

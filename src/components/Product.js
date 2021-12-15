@@ -5,6 +5,7 @@ import { LoginState } from "../context/contextLogIn";
 import { Col, Card } from "react-bootstrap";
 import Counter from "../components/Counter/Counter";
 import {useState} from "react"
+import {Link} from "react-router-dom"
 
 
 export default function Product({
@@ -34,10 +35,10 @@ export default function Product({
     <Col>
       <Card>
         {showImage ? (
-          <Card.Img
-            variant="top"
-            src="https://via.placeholder.com/200.png/09f/fff"
-          />
+         <Link to="/prodotto"><Card.Img
+         variant="top"
+         src="https://via.placeholder.com/200.png/09f/fff"
+       /></Link> 
         ) : null}
         {/*{showButtonCart ? da fare con un ternario */}
         <Card.Body id="bottonCart">
