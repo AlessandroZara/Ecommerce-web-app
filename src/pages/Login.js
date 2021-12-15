@@ -10,10 +10,16 @@ import "./Login.css";
 
 export default function Login() {
   const { setUser } = LoginState();
-
+  const [showErrorDate, setShowErrorDate] = useState(false);
   const [Username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
+
+  const sendMessageError = () => {
+    setTimeout(() => {
+      setShowErrorDate(false);
+    }, 2000);
+  };
  
   const handleLogin = async () => {
     console.log("Sono HandleLogin",password, Username);
@@ -22,8 +28,12 @@ export default function Login() {
       setUser(response.data); // imposto l'utente che mi arriva dalle API che ha una proprietà "name"
       navigate(`/`)
     } catch (err) {
+      setShowErrorDate(true);
+      sendMessageError();
       if (err.response) {
+        
         console.warn(err.response.data);
+        
       } else {
         console.warn(err);
       }
@@ -75,6 +85,9 @@ export default function Login() {
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
+          {showErrorDate ?
+          <p>c'è qualche errorre nei dati inserti</p>
+          :null}
         <Button variant="primary" type="submit">
           Submit
         </Button>

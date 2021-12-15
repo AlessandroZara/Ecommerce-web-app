@@ -91,7 +91,7 @@ const CartProvider = ({ children }) => {
   }, []);
 
   const sumPrice= cart.reduce((prev,current)=>{
-    return prev + current.price
+    return prev + (current.quantity * current.price)
 },0);
 
   return (

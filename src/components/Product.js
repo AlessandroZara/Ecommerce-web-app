@@ -73,7 +73,7 @@ export default function Product({
               >
                 X
               </Button>
-              <Counter initialValue={data.quantity} product={data} />
+              <Counter initialValue={data.quantity} product={data} price={data.price} available={data.available} />
             </Row>
           ) : null}
         </Card.Body>

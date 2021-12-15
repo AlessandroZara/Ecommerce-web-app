@@ -3,12 +3,24 @@ import NavBar from "../components/NavBar/NavBar";
 import { useNavigate, useLocation } from "react-router-dom";
 
 
-export default function Thank() {
+export default function Thank({ 
+    price,
+    quantity
+}) {
   const navigate = useNavigate();
   const { state } = useLocation(); // con lo useLocation importo quello che io ho passato nello useNavigate nel file "ListCart"
   console.log("sono nella thankyoupage", state);
   
+  const getAmount = (singleProduct, productQuantity) => {
+    const totalAmount = singleProduct * productQuantity;
+    return (
+      <span>
+        <h6>Amount: {totalAmount}$</h6>
+      </span>
+    );
+  };
 
+  
   return (
     <>
       <NavBar />
@@ -26,7 +38,7 @@ export default function Thank() {
             </>
           ))}
         </ul>
-            <h3>{state?.sumPrice.toFixed(2)} &euro;</h3>
+            <><h3>{getAmount(price, quantity)} &euro;</h3></>
         {/* <h2>Sfigato però...siccome non c'è un vero E-commerce dietro non ti arriva una sega</h2>*/}
         <Button
           onClick={() => {

@@ -5,10 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function ListCart({ data }) {
   const navigate = useNavigate(); //navigate in input prende più parametri, guardare documentazione
-  const { cart, ThankDelete, Empty,sumPrice } = CartState();
-
-  
-
+  const { cart, ThankDelete, Empty, sumPrice } = CartState();
 
   return (
     <>
@@ -19,17 +16,16 @@ export default function ListCart({ data }) {
           </>
         ))}
       </ListGroup>
-     
-     <h3>{sumPrice.toFixed(2)} &euro;</h3>
 
-      {cart.length > 0 ? (
+      {cart.length >= 1 ? (
         <>
+          <h3>{sumPrice.toFixed(2)} &euro;</h3>
           <Button
             id="buy"
             onClick={() => {
               ThankDelete();
               console.log("sono in ListCard", cart);
-              navigate(`/thankyoupage`, { state: {cart,sumPrice} }); // "state" è un parametro dello useNavigate
+              navigate(`/thankyoupage`, { state: { cart, sumPrice } }); // "state" è un parametro dello useNavigate
             }}
           >
             Compra

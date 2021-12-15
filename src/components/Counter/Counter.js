@@ -1,40 +1,49 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import {CartState} from "../../context/Cart"
+import { CartState } from "../../context/Cart";
 
+export default function Counter({ initialValue, product, price ,available}) {
+  const { updateCart } = CartState();
+  const [count, setCounter] = useState(initialValue);
 
-
-
-export default function Counter({
-    initialValue,
-    product
-}){
-    const {updateCart}=CartState()
-    const[count,setCounter]=useState(initialValue)
-
-    function addCounter(){
-        setCounter(prevCount=>prevCount+1)
-    }
-    function negCounter(){
-        if(count > 0){
-        setCounter(prevCount=>prevCount-1)
-        }
-    }
+  function addCounter() {
+      if(count >= 1 && count < available) {
+        setCounter((prevCount) => prevCount + 1);
+      }
     
+  }
+  function negCounter() {
+    if (count > 0) {
+      setCounter((prevCount) => prevCount - 1);
+    }
+  }
 
-    return(
-        <>
-        <div>
+  const getAmount = (productAmount, productQuantity) => {
+    const singleAmount = productAmount * productQuantity;
+    return (
+      <span>
+        <h6>Amount: {singleAmount}$</h6>
+      </span>
+    );
+  };
+
+  return (
+    <>
+      <div>
         <Button onClick={addCounter}>+</Button>
         <span>{count}</span>
         <Button onClick={negCounter}>-</Button>
-        
-        </div>
-        <div>
-        <Button onClick={()=> {updateCart(product,count)}}>Conferma quantità </Button>
-        </div> 
-       </>
-
-    )
-    
+        {getAmount(price, initialValue)}
+      </div>
+      <div>
+        <Button
+          onClick={() => {
+            updateCart(product, count);
+          }}
+        >
+          Conferma quantità{" "}
+        </Button>
+      </div>
+    </>
+  );
 }
