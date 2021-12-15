@@ -85,6 +85,27 @@ nav .container {
   );
   min-height: 80vh;
 }
+
+.lista-carrello {
+  padding:20px;
+ border:2px black solid;
+ display:flex;
+flex-direction: column;
+}
+
+.dritta{
+  
+  border-top:1px black solid
+}
 .lista-carrello > li{
-  list-style: none
+  padding:10px;
+  list-style: none;
+  display:flex;
+  
+  
+}
+
+.lista-carrello > li:first-child{
+  
+  border-top:none
 }
