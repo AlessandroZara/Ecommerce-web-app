@@ -52,9 +52,13 @@ div#bottonCart .row{
 }
 
 div#bottonCart .row button{
-  width: 40px;
   margin: 0 5px;
 }
+
+div#bottonCart .row button#delete{
+  width:40px
+}
+
 div#bottonCart .row>div{
   display: contents;
 }

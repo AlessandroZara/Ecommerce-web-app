@@ -43,7 +43,7 @@ export default function Cart() {
     <>
       <NavBar />
       <Page>
-        <Container>
+        <Container fluid>
           <h1>Carrello</h1>
           <ListCart />
         </Container>

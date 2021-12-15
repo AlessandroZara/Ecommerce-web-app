@@ -1,14 +1,14 @@
-import './App.css'
-import { BrowserRouter, Routes } from 'react-router-dom'
-import { Route } from 'react-router'
-import Home from './pages/Home'
-import Login from './pages/Login'
+import "./App.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 // import Product from './pages/Product'
-import NotFound from './pages/NotFound'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Product from './pages/Product'
-import Cart from './pages/Cart'
-import Thanks from "./pages/ThankYouPage"
+import NotFound from "./pages/NotFound";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Product from "./pages/Product";
+import Cart from "./pages/Cart";
+import Thanks from "./pages/ThankYouPage";
+import { LoginState } from "./context/contextLogIn";
 
 function App() {
   return (
@@ -22,48 +22,44 @@ function App() {
       </nav>
 
       <Routes>
-
-        <Route
-          path="/"
-          element={<Home/>}
-        />
-        <Route
-          path="/prodotto"
-          element={<Product/>}
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/prodotto" element={<Product />} />
 
         <Route
           path="/cart"
-          element={<Cart />}
-        />
-
-            <Route
-          path="/thankyoupage"
-          element={<Thanks/>}
+          element={
+            <PrivateRoutes>
+              <Cart />
+            </PrivateRoutes>
+          }
         />
 
         <Route
-          path="/login"
-          element={<Login />}
+          path="/thankyoupage"
+          element={
+            <PrivateRoutes>
+              <Thanks />
+            </PrivateRoutes>
+          }
         />
+
+        <Route path="/login" element={<Login />} />
 
         {/* <Route
           path="/product/:id"
           element={<Product/>}
         /> */}
 
-        <Route
-          path="*"
-          element={<NotFound/>}
-        />
-
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
-export default App
+export default App;
 
+const PrivateRoutes = ({ children }) => {
+  const { user } = LoginState();
 
-  
-
+  return <>{user ? children : <Navigate to={"/"} />}</>;
+};

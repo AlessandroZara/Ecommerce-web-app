@@ -50,15 +50,19 @@ export default function Product({
             
           ) : null}
          {showError ?
-          <p>Devi Essere Loggato per acquistare</p>
+         <div>
+           <p>Devi Essere Loggato per acquistare</p>
+         </div>
+          
         :null}
          
           {showButtonCart ? (
             <Row className="row">
-              <Button
+              <Button id="delete"
               onClick={() => {
               Delete(data);
-              }}>X</Button><Counter/>
+              }}>X</Button>
+              <Counter initialValue={data.quantity} product={data} />
             </Row>
           ) : null}
         </Card.Body>
