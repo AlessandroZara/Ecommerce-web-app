@@ -35,7 +35,7 @@ function NavBar(){
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
             <Link to="/" className="link-style" > <Nav.Link as="span">Home</Nav.Link></Link>
-            <Link to="/prodotto" className="link-style" > <Nav.Link as="span">Prodotto</Nav.Link></Link>
+            
             </Nav>
             <Nav>
                 {user ? <Nav.Link onClick={()=>{setUser(null)}}>
