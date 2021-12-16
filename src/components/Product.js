@@ -29,7 +29,7 @@ export default function Product({
 
   return (
     <Col>
-      <Card>
+      <Card className="card__container">
         {showImage ? (
           <Link to={`/product/${data.id}`}>
             <Card.Img
@@ -41,7 +41,7 @@ export default function Product({
         {/*{showButtonCart ? da fare con un ternario */}
         <Card.Body id="bottonCart">
           {/*: <Card.Body> da fare con un ternario */}
-          <Card.Title>{data.name}</Card.Title>
+          <Card.Title className="card__container__title">{data.name}</Card.Title>
           {showButton ? (
             <Button
               onClick={() => {

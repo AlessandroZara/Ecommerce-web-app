@@ -5,7 +5,9 @@ import {LoginContext} from "../../context/contextLogIn"
 import {Link} from "react-router-dom"
 import './NavBar.css'
 import ButtonDark from "../ThemeBlack/ButtonDark";
-
+import { FaCartArrowDown } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import {FaSignOutAlt} from "react-icons/fa"
 function NavBar(){
     
     
@@ -39,17 +41,17 @@ function NavBar(){
             </Nav>
             <Nav>
                 {user ? <Nav.Link onClick={()=>{setUser(null)}}>
-                Log-out
+                <FaSignOutAlt size={28}/>
             </Nav.Link>
             :
             <Link to="/login" className="link-style" ><Nav.Link as="span" >
-                Log-in
+                <FaUser/>
             </Nav.Link>
             </Link>
             }
             {user ?
            <Link to="/cart" className="link-style"> <Nav.Link as="span">
-                Cart({sumProduct})
+               <FaCartArrowDown/>({sumProduct})
             </Nav.Link>
             </Link>
            :null }

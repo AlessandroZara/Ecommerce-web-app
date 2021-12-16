@@ -76,16 +76,18 @@ nav .container {
   margin: 0 auto;
 }
 .container-single{
+  
   background: rgb(198, 238, 235);
   background: linear-gradient(
     90deg,
     rgba(198, 238, 235, 1) 0%,
     rgba(142, 178, 221, 1) 100%,
-  )}
+  )
+}
+
 .container-single-product.container {
   display: flex;
   justify-content: center;
-  
   /* background: rgb(198, 238, 235);
   background: linear-gradient(
     90deg,
@@ -115,6 +117,25 @@ flex-direction: column;
 }
 
 .lista-carrello > li:first-child{
-  
   border-top:none
+}
+
+.card__container:hover {
+ box-shadow: var(--box-shadow)
+}
+
+:root {
+  --text-primary: black;
+  --box-shadow:  0px 0px 10px rgba(176, 162, 238, 0.5);
+ 
+}
+[data-theme='dark'] {
+  --text-primary: rgb(2, 2, 2);
+  --box-shadow: 0px 0px 10px rgba(177, 162, 238, 0.5);
+ 
+}
+
+.card__container {
+  color: var(--text-primary);
+  
 }
