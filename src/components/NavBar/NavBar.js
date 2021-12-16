@@ -4,7 +4,7 @@ import {CartContext} from "../../context/Cart"
 import {LoginContext} from "../../context/contextLogIn"
 import {Link} from "react-router-dom"
 import './NavBar.css'
-
+import ButtonDark from "../ThemeBlack/ButtonDark";
 
 function NavBar(){
     
@@ -54,6 +54,7 @@ function NavBar(){
             </Link>
            :null }
             </Nav>
+            <ButtonDark/>
         </Navbar.Collapse>
         </Container>
     </Navbar>
