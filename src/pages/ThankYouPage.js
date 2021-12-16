@@ -14,7 +14,7 @@ export default function Thank() {
     <>
       <NavBar />
 
-      <Container>
+      <Container className="thank__thank">
         <h1>Complimenti hai comprato gli articoli</h1>
         <ul className="lista-carrello">
          

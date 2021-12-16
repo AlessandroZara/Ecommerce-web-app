@@ -24,7 +24,7 @@ export default function Cart() {
     align-items: center;
     background: #191919;
     color: white;
-    min-height: 8vh;
+    min-height: 25vh;
     font-size: 1.5rem;
     font-weight: bold;
   `;
@@ -43,7 +43,7 @@ export default function Cart() {
     <>
       <NavBar />
       <Page>
-        <Container fluid>
+        <Container className="cart__cart" fluid>
           <h1>Carrello</h1>
           <ListCart />
         </Container>

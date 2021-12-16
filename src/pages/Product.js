@@ -7,6 +7,8 @@ import { CartState } from "../context/Cart";
 import { LoginState } from "../context/contextLogIn";
 import styled from "styled-components";
 
+
+
 export default function Product({ sendMessage }) {
   const { id } = useParams();
   const { user } = LoginState();
@@ -44,6 +46,10 @@ export default function Product({ sendMessage }) {
     }, 2000);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+
+
+  
+
   const Footer = styled.div`
     display: flex;
     flex-direction: column;
@@ -60,6 +66,7 @@ export default function Product({ sendMessage }) {
     display: flex;
     justify-content: center;
     align-items: center;
+    
   `;
 
   const Text = styled.div`
@@ -80,12 +87,12 @@ export default function Product({ sendMessage }) {
               <Col sm={8}>
                 <Image src="https://via.placeholder.com/300.png/09f/fff" />
               </Col>
-              <Col sm={4}>
+              <Col className="text__col" sm={4}>
                 <h1>{data.name}</h1>
                 Price:
                 <h4>{data.price.toFixed(2)} &euro;</h4>
                 <p>Disponibilità: {data.available}</p>
-                <Button
+                <Button 
                   onClick={() => {
                     if (user) {
                       addToCart(data);
@@ -97,6 +104,7 @@ export default function Product({ sendMessage }) {
                 >
                   {" "}
                   Aggiungi a Carrello
+                  
                 </Button>
                 {showErrorProduct ? (
                   <div>

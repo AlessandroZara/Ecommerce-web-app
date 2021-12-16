@@ -9,7 +9,7 @@ export default function ListCart({ data }) {
 
   return (
     <>
-      <ListGroup as="ul">
+      <ListGroup className="cart__cart" as="ul">
         {cart.map((product) => (
           <>
             <Product key={product.id} data={product} showButtonCart/>

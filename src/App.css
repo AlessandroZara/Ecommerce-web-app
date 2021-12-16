@@ -76,7 +76,7 @@ nav .container {
   margin: 0 auto;
 }
 .container-single{
-  
+  padding-top:150px;
   background: rgb(198, 238, 235);
   background: linear-gradient(
     90deg,
@@ -122,6 +122,20 @@ flex-direction: column;
 
 .card__container:hover {
  box-shadow: var(--box-shadow)
+}
+
+.text__col{
+color: var(--text-primary);
+
+}
+.thank__thank{
+  
+  margin-top:100px
+}
+.cart__cart{
+  margin-top:80px;
+  color: var(--text-primary);
+
 }
 
 :root {

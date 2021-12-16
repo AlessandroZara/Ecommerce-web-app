@@ -24,6 +24,7 @@ const Title = styled.h1`
     text-align: center;
     padding-bottom:1rem;
     margin: 1rem;
+    margin-top:100px;
     animation: fadeIn 3s;
     @keyframes fadeIn {
         from {
