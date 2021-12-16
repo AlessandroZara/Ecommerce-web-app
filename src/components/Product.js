@@ -58,7 +58,7 @@ export default function Product({
             </Button>
           ) : null}
           {showError ? (
-            <div>
+            <div style={{paddingTop: 20}}>
               <p>Devi Essere Loggato per acquistare</p>
             </div>
           ) : null}

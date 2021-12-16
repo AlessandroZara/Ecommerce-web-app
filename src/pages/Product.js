@@ -69,7 +69,8 @@ export default function Product({ sendMessage }) {
   return (
     <>
       <NavBar />
-      <Container className="container-single-product">
+      <div className="container-single">
+      <Container style={{margin:"0",paddingTop:"50px"}}className="container-single-product">
         {loading ? (
           <Spinner animation="border" />
         ) : data ? (
@@ -109,6 +110,7 @@ export default function Product({ sendMessage }) {
           "Product not found"
         )}
       </Container>
+      </div>
       <Footer>
         <Title>E-commerce</Title>
         <Text>Copyright 2021</Text>

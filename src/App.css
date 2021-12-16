@@ -44,6 +44,7 @@
 div#bottonCart {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 }
 
 div#bottonCart .row {
@@ -74,16 +75,24 @@ button#buy {
 nav .container {
   margin: 0 auto;
 }
-
-.container-single-product.container {
-  display: flex;
+.container-single{
   background: rgb(198, 238, 235);
   background: linear-gradient(
     90deg,
     rgba(198, 238, 235, 1) 0%,
+    rgba(142, 178, 221, 1) 100%,
+  )}
+.container-single-product.container {
+  display: flex;
+  justify-content: center;
+  
+  /* background: rgb(198, 238, 235);
+  background: linear-gradient(
+    90deg,
+    rgba(198, 238, 235, 1) 0%,
     rgba(142, 178, 221, 1) 100%
-  );
-  min-height: 80vh;
+  );*/
+  min-height: 86vh; 
 }
 
 .lista-carrello {
