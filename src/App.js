@@ -9,6 +9,8 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Thanks from "./pages/ThankYouPage";
 import { LoginState } from "./context/contextLogIn";
+import CookieConsent from "react-cookie-consent";
+
 
 function App() {
   return (
@@ -52,6 +54,35 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <CookieConsent
+  location="bottom"
+  buttonText="Accetto"
+  cookieName="myAwesomeCookieName2"
+  style={{ background: "#2B373B" }}
+  buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+  expires={150}
+  
+>
+  This website uses cookies to enhance the user experience.{" "}
+  <span style={{ fontSize: "10px" }}>This bit of text is smaller :O</span>
+  <button
+    style={{
+      float: "right",
+      background: "#ff0000",
+      border: "0",
+      fontWeight: "bolder",
+      borderRadius: "0px",
+      boxShadow: "none",
+      color: "black",
+      
+    }}
+    onClick={() => {
+      alert("devi accettare per proseguire");
+    }}
+  >
+    decline
+  </button>
+</CookieConsent>
     </BrowserRouter>
   );
 }

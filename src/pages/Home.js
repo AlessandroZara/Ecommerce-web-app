@@ -7,7 +7,6 @@ import { Row, Container } from "react-bootstrap";
 import Product from "../components/Product";
 
 
-
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -60,9 +59,9 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      
+
       <Hero />
-     
+
       <Container>
         {loading ? (
           "Loading"
@@ -75,7 +74,6 @@ export default function Home() {
         ) : (
           "No products found"
         )}
-        
       </Container>
       <Footer>
         <Title>E-commerce</Title>
