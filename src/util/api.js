@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const axiosInstance = axios.create({ baseURL: 'http://localhost:8080/' })
+const axiosInstance = axios.create({ baseURL: 'https://git.heroku.com/ecommerce-gruppo-panettieri.git' })
 
 const api = {
   getProducts: () => {
