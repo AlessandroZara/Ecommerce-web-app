@@ -10,7 +10,7 @@ import Cart from "./pages/Cart";
 import Thanks from "./pages/ThankYouPage";
 import { LoginState } from "./context/contextLogIn";
 import CookieConsent from "react-cookie-consent";
-
+import ProdottiPage from "./pages/Prodotti";
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/prodotto" element={<Product />} />
+        <Route path="/prodotti" element={<ProdottiPage />} />
 
         <Route
           path="/cart"

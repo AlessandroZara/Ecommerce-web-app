@@ -9,7 +9,6 @@ import { FaCartArrowDown } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 
-
 function NavBar() {
   const { cart } = useContext(CartContext);
   const sumProduct = cart.reduce((prev, current) => {
@@ -40,8 +39,12 @@ function NavBar() {
               {" "}
               <Nav.Link as="span">Home</Nav.Link>
             </Link>
+            <Link to="/prodotti" className="link-style">
+              {" "}
+              <Nav.Link as="span">Prodotti</Nav.Link>
+            </Link>
           </Nav>
-          <Nav>
+            <Nav>
             {user ? (
               <Nav.Link
                 onClick={() => {
