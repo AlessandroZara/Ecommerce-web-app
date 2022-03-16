@@ -94,7 +94,7 @@ export default function Login() {
   return (
     <>
       <NavBar />
-      <Container className="__form">
+      <Container fluid>
       <Form onSubmit={(e)=>{
          e.preventDefault();
          handleLogin(mail,password)}}>
