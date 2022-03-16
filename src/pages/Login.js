@@ -4,6 +4,7 @@ import { Button,Form } from "react-bootstrap";
 import { LoginState } from "../context/contextLogIn";
 //import api from "../util/api.js";
 import {useNavigate} from "react-router-dom";
+import {Container} from "react-bootstrap";
 import styled from "styled-components";
 import "./Login.css";
 import {auth} from '../config/firebase';
@@ -88,20 +89,12 @@ export default function Login() {
     const Text = styled.div`
     font-size: 0.8rem;
     `;
-    const Container = styled.div` {
-      background: #FFFFFF;
-      max-width: 400px;
-      margin: 0 auto 100px;
-      margin-top: 50px;
-      padding: 45px;
-      box-shadow: var(--box-shadow);
-      color: var(--text-primary)
-  }
-  `;
+
+
   return (
     <>
       <NavBar />
-      <Container>
+      <Container className="__form">
       <Form onSubmit={(e)=>{
          e.preventDefault();
          handleLogin(mail,password)}}>
