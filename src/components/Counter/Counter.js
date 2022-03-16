@@ -13,7 +13,7 @@ export default function Counter({ initialValue, product, price ,available}) {
     
   }
   function negCounter() {
-    if (count > 0) {
+    if (count > 1) {
       setCounter((prevCount) => prevCount - 1);
     }
   }
