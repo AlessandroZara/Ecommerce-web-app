@@ -1,6 +1,6 @@
 import NavBar from "../components/NavBar/NavBar";
 import styled from "styled-components";
-import Product from "../components/Product";
+//import Product from "../components/Product";
 import { Container } from "react-bootstrap";
 import ListCart from "../components/ListCart";
 import "../App.css";

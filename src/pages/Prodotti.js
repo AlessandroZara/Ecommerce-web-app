@@ -1,13 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import api from "../util/api";
+//import api from "../util/api";
 import NavBar from "../components/NavBar/NavBar";
 import { Row, Carousel } from "react-bootstrap";
 import styled from "styled-components";
 import Product from "../components/Product";
-import belivemaglia from "../images/belivemaglia.jpg"
-import nike from "../images/nike.jpg"
-import sportcinese from "../images/sportcinese.jpg"
+import belivemaglia from "../images/belivemaglia.jpg";
+import nike from "../images/nike.jpg";
+import sportcinese from "../images/sportcinese.jpg";
+import {db} from '../config/firebase';
+import {ref,onValue} from 'firebase/database';
+
 
 const ProdottiPage = () => {
   const [loading, setLoading] = useState(true);
@@ -16,10 +19,12 @@ const ProdottiPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await api.getProducts();
-
-        console.log(res);
-        setData(res.data.products);
+        const res = ref(db, 'products/');
+        onValue(res, (snapshot) => {
+        const data = snapshot.val();
+        setData(data)
+        console.log(data)
+        })
       } catch (err) {
         console.warn(err);
       } finally {
@@ -136,7 +141,7 @@ const ProdottiPage = () => {
         ) : data.length ? (
           <Row xs={1} md={5} className="g-4">
             {data.map((product) => (
-              <Product key={product.id} data={product} showImage showButton />
+              <Product key={product.id} data={product} quantity={1} showImage showButton />
             ))}
           </Row>
         ) : (

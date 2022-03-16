@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import NavBar from "../components/NavBar/NavBar";
 import { Button,Form } from "react-bootstrap";
 import { LoginState } from "../context/contextLogIn";
-import api from "../util/api.js";
+//import api from "../util/api.js";
 import {useNavigate} from "react-router-dom";
 import {Container} from "react-bootstrap";
 import styled from "styled-components";
 import "./Login.css";
+import {auth} from '../config/firebase';
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 
 export default function Login() {
   const { setUser } = LoginState();
   const [showErrorDate, setShowErrorDate] = useState(false);
-  const [Username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [mail, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const navigate = useNavigate()
+ 
 
   const sendMessageError = () => {
     setTimeout(() => {
@@ -21,24 +26,47 @@ export default function Login() {
     }, 2000);
   };
  
-  const handleLogin = async () => {
-    console.log("Sono HandleLogin",password, Username);
+  const handleLogin = async (email, password) => {
+    
     try {
-      const response = await api.login(Username, password);
-      setUser(response.data); // imposto l'utente che mi arriva dalle API che ha una proprietà "name"
+       await signInWithEmailAndPassword(auth, email, password)
+      .then((response) => {
+        console.log(response,email,password)
+        console.log(response.user.email)
+        setUser(response.user.email);
+    });  
       navigate(`/`)
+      
     } catch (err) {
       setShowErrorDate(true);
       sendMessageError();
       if (err.response) {
-        
         console.warn(err.response.data);
-        
-      } else {
-        console.warn(err);
+      }else{
+      console.warn(err);
       }
     }
   };
+    
+
+  // const handleLogin = async () => {
+  //   console.log("Sono HandleLogin",password, Username);
+  //   try {
+  //     const response = await api.login(Username, password);
+  //     setUser(response.data); // imposto l'utente che mi arriva dalle API che ha una proprietà "name"
+  //     navigate(`/`)
+  //   } catch (err) {
+  //     setShowErrorDate(true);
+  //     sendMessageError();
+  //     if (err.response) {
+        
+  //       console.warn(err.response.data);
+        
+  //     } else {
+  //       console.warn(err);
+  //     }
+  //   }
+  // };
 
   const Footer = styled.div`
     display: flex;
@@ -69,10 +97,10 @@ export default function Login() {
       <Container className="form">
       <Form onSubmit={(e)=>{
          e.preventDefault();
-         handleLogin()}}>
+         handleLogin(mail,password)}}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" value={Username} onChange={(e)=>{setUsername(e.target.value)}}/>
+          <Form.Control type="email" placeholder="Enter email" value={mail} onChange={(e)=>{setEmail(e.target.value)}}/>
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>

@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import api from "../util/api";
 import NavBar from "../components/NavBar/NavBar";
 import { Button, Col, Container, Image, Row, Spinner } from "react-bootstrap";
 import { CartState } from "../context/Cart";
 import { LoginState } from "../context/contextLogIn";
 import styled from "styled-components";
-
+import {db} from '../config/firebase';
+import { ref,onValue } from "firebase/database";
 
 
 export default function Product({ sendMessage }) {
   const { id } = useParams();
+   
   const { user } = LoginState();
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [showErrorProduct, setShowErrorProduct] = useState(false);
 
   const { addToCart } = CartState();
@@ -26,13 +27,18 @@ export default function Product({ sendMessage }) {
 
   useEffect(() => {
     setTimeout(() => {
-      (async () => {
+      ( () => {
         try {
-          const res = await api.getProduct(id);
-
-          console.log("product", res);
-
-          setData(res.data);
+          const res = ref(db, 'products/');
+          onValue(res, (snapshot) => {
+          const ref = snapshot.val();// arriva oggetto con più oggetti
+          console.log(ref)
+          const arrKeys =Object.values(ref);// Qui viene trasformato in array perche lo stato è un array
+          const idProduct=arrKeys.filter(obj =>obj.id === id) // filtro i dati che mi interessano
+          setData(idProduct[0]) //setto lo stato "data"
+          console.log( idProduct[0])
+          
+        })
         } catch (err) {
           if (err.response) {
             console.warn("response error", err.response);
@@ -46,8 +52,7 @@ export default function Product({ sendMessage }) {
     }, 2000);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-
-
+  
   
 
   const Footer = styled.div`
@@ -72,12 +77,12 @@ export default function Product({ sendMessage }) {
   const Text = styled.div`
     font-size: 0.8rem;
   `;
-
+  const imgUrl="https://via.placeholder.com/300.png/09f/fff";
   return (
     <>
       <NavBar />
       <div className="container-single">
-      <Container style={{margin:"0",paddingTop:"50px"}}className="container-single-product">
+      <Container style={{margin:"0",paddingTop:"50px"}} className="container-single-product">
         {loading ? (
           <Spinner animation="border" />
         ) : data ? (
@@ -85,7 +90,7 @@ export default function Product({ sendMessage }) {
             {" "}
             <Row>
               <Col sm={8}>
-                <Image src="https://via.placeholder.com/300.png/09f/fff" />
+                <img src={imgUrl} alt="massimiliano grazie" />
               </Col>
               <Col className="text__col" sm={4}>
                 <h1>{data.name}</h1>

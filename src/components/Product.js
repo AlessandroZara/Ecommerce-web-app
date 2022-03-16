@@ -47,6 +47,7 @@ export default function Product({
               onClick={() => {
                 if (user) {
                   addToCart(data);
+                  console.log(data)
                 } else {
                   setShowError(true);
                   sendMessage();

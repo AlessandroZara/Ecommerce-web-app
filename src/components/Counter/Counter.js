@@ -39,6 +39,7 @@ export default function Counter({ initialValue, product, price ,available}) {
         <Button
           onClick={() => {
             updateCart(product, count);
+            console.log(product,count)
           }}
         >
           Conferma quantità{" "}

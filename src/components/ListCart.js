@@ -3,16 +3,17 @@ import { Button, ListGroup } from "react-bootstrap";
 import Product from "./Product";
 import { useNavigate } from "react-router-dom";
 
+
 export default function ListCart({ data }) {
   const navigate = useNavigate(); //navigate in input prende più parametri, guardare documentazione
   const { cart, ThankDelete, Empty, sumPrice } = CartState();
-
+  
   return (
     <>
       <ListGroup className="cart__cart" as="ul">
         {cart.map((product) => (
           <>
-            <Product key={product.id} data={product} showButtonCart/>
+            <Product key={product.id} data={product} showButtonCart />
           </>
         ))}
       </ListGroup>
@@ -23,21 +24,23 @@ export default function ListCart({ data }) {
           <Button
             id="buy"
             onClick={() => {
-              ThankDelete();
+              ThankDelete(data);
               console.log("sono in ListCard", cart);
               navigate(`/thankyoupage`, { state: { cart, sumPrice } }); // "state" è un parametro dello useNavigate
             }}
           >
             Compra
           </Button>
-          <Button
-            id="buy"
-            onClick={() => {
-              Empty(data);
-            }}
-          >
-            Svuota Carrello
-          </Button>
+          
+            {/* <Button
+              id="buy"
+              onClick={() => {
+                Empty(data);
+              }}
+            >
+              Svuota Carrello
+            </Button> */}
+         
         </>
       ) : null}
     </>

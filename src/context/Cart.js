@@ -1,16 +1,38 @@
-import api from "../util/api";
+import { db } from "../config/firebase";
+import { ref } from "firebase/database";
 import { createContext, useContext, useState, useEffect } from "react";
+import { dbFire } from "../config/firebase";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  doc,
+  setDoc,
+  where,
+  getDoc,
+  query,
+  deleteDoc,
+  deleteField,
+} from "firebase/firestore";
 
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
-
+ 
   const productApi = async () => {
     try {
-      const res = await api.getCart();
-      console.log(res);
-      setCart(res.data.products);
+      const arr = [];
+      const querySnapshot = await getDocs(collection(dbFire, "product"));
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+        arr.push(doc.data());
+        console.log(arr);
+        
+      });
+      setCart(arr);
     } catch (err) {
       if (err.response) {
         console.warn(err.response.data);
@@ -21,23 +43,37 @@ const CartProvider = ({ children }) => {
   };
 
   const addToCart = async (product) => {
-    try {
-      await api.addToCart(product.id);
-      productApi();
-    } catch (err) {
-      if (err.response) {
-        console.warn(err.response.data);
-      } else {
-        console.warn(err);
-      }
-    }
+    
+    const cityRef = doc(dbFire, "product", product.id);
+    setDoc(cityRef, {
+      id: product.id,
+      name: product.name,
+      quantity: product.quantity,
+      price: product.price,
+      available: product.available,
+    });
+       
+    console.log(product.id);
+    console.log("Document written with ID: ", cityRef.id);
+
+    // id: product.id,
+    // name:product.name,
+    // quantity:product.quantity,
+    // available:product.available,
+    // price:product.price
+     productApi();
   };
+
   const updateCart = async (product, count) => {
     try {
-      await api.updateCart(product.id, {
-        quantity: (product.quantity = count),
+      const RefProd = doc(dbFire, "product", product.id);
+      // Set the "capital" field of the city 'DC'
+      await updateDoc(RefProd, {
+      quantity:(product.quantity = count),       
       });
-      productApi();
+      
+      console.log(product.id)
+      productApi()
     } catch (err) {
       if (err.response) {
         console.warn(err.response.data);
@@ -49,7 +85,18 @@ const CartProvider = ({ children }) => {
 
   const Delete = async (product) => {
     try {
-      await api.updateCart(product.id, { quantity: (product.quantity = 0) });
+       const RefDele = doc(dbFire, "product", product.id);
+
+      // Remove the 'capital' field from the document
+      await updateDoc(RefDele, {
+        id: deleteField(product.id),
+        name: deleteField(product.name),
+        quantity: deleteField(product.quantity),
+        price: deleteField(product.price),
+        available: deleteField(product.available),
+      });
+      await deleteDoc(doc(dbFire, "product", product.id));
+      
       productApi();
     } catch (err) {
       if (err.response) {
@@ -59,23 +106,25 @@ const CartProvider = ({ children }) => {
       }
     }
   };
-  const Empty = async () => {
-    try {
-      await api.emptyCart();
-      setCart([]);
-    } catch (err) {
-      if (err.response) {
-        console.warn(err.response.data);
-      } else {
-        console.warn(err);
-      }
-    }
-  };
 
-  const ThankDelete = async () => {
-    try {
-      await api.checkoutCart();
+  // const Empty = async (product) => {
+  //   try {
+      
+  //     await deleteDoc(doc(dbFire, "product", product.id));
+      
+  //     setCart([]) 
+  //   } catch (err) {
+  //     if (err.response) {
+  //       console.warn(err.response.data);
+  //     } else {
+  //       console.warn(err);
+  //     }
+  //   }
+  // };
 
+  const ThankDelete = (product) => {
+    try {
+       deleteDoc(doc(dbFire, "product",product));
       setCart([]);
     } catch (err) {
       if (err.response) {
@@ -90,9 +139,9 @@ const CartProvider = ({ children }) => {
     productApi();
   }, []);
 
-  const sumPrice= cart.reduce((prev,current)=>{
-    return prev + (current.quantity * current.price)
-},0);
+  const sumPrice = cart.reduce((prev, current) => {
+    return prev + current.quantity * current.price;
+  }, 0);
 
   return (
     <CartContext.Provider
@@ -102,7 +151,6 @@ const CartProvider = ({ children }) => {
         cart,
         Delete,
         ThankDelete,
-        Empty,
         updateCart,
         sumPrice,
       }}
