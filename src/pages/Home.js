@@ -1,23 +1,28 @@
 import { useEffect, useState } from "react";
-import api from "../util/api";
 import NavBar from "../components/NavBar/NavBar";
 import Hero from "../components/Hero/Hero";
 import styled from "styled-components";
 import { Row, Container } from "react-bootstrap";
 import Product from "../components/Product";
-
+import {db} from '../config/firebase';
+import { ref,onValue } from "firebase/database";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
+  
   useEffect(() => {
-    (async () => {
+    ( () => {
       try {
-        const res = await api.getProducts();
-
-        console.log(res);
-        setData(res.data.products);
+         const res = ref(db, 'products/');
+        onValue(res, (snapshot) => {
+        const ref = snapshot.val();// arriva oggetto con più oggetti
+        const arrKeys =Object.values(ref);
+        setData(arrKeys) // Qui viene trasformato in array perche lo stato è un array
+        console.log(arrKeys) 
+        
+        })
       } catch (err) {
         console.warn(err);
       } finally {
@@ -44,6 +49,8 @@ export default function Home() {
     height: 8vh;
     font-size: 1.5rem;
     font-weight: bold;
+    padding-bottom:1px;
+    height:50px
   `;
 
   const Title = styled.div`
