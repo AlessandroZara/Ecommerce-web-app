@@ -1,5 +1,5 @@
 // https://placeholder.com/ per le immagini
-import { Button, Image, Row } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 import { CartState } from "../context/Cart";
 import { LoginState } from "../context/contextLogIn";
 import { Col, Card } from "react-bootstrap";

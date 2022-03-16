@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function ListCart({ data }) {
   const navigate = useNavigate(); //navigate in input prende più parametri, guardare documentazione
-  const { cart, ThankDelete, Empty, sumPrice } = CartState();
+  const { cart, ThankDelete, sumPrice } = CartState();
   
   return (
     <>

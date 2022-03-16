@@ -1,17 +1,11 @@
-import { db } from "../config/firebase";
-import { ref } from "firebase/database";
 import { createContext, useContext, useState, useEffect } from "react";
 import { dbFire } from "../config/firebase";
 import {
   collection,
-  addDoc,
   getDocs,
   updateDoc,
   doc,
   setDoc,
-  where,
-  getDoc,
-  query,
   deleteDoc,
   deleteField,
 } from "firebase/firestore";

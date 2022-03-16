@@ -5,7 +5,6 @@ import { lightTheme, darkTheme } from "./Theme"
 import {FaMoon} from 'react-icons/fa'
 
 export default function ButtonDark() {
-    const [videos, setVideos] = useState([]);
     const [theme, setTheme] = useState('light');
     const themeToggler = () => {
         theme === 'light' ? setTheme('dark') : setTheme('light');
