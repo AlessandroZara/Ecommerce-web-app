@@ -16,6 +16,12 @@ export default function Login() {
   const [showErrorDate, setShowErrorDate] = useState(false);
   const [mail, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [values, setValues] = React.useState({
+    password: "",
+    showPassword: false,
+  });
+  
+  
 
   const navigate = useNavigate()
  
@@ -48,7 +54,13 @@ export default function Login() {
     }
   };
     
-
+   const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+  
   // const handleLogin = async () => {
   //   console.log("Sono HandleLogin",password, Username);
   //   try {
@@ -108,10 +120,10 @@ export default function Login() {
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
+          <Form.Control type={values.showPassword ? "text" : "password"} placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
+          <Form.Check type="checkbox" label="Check me out" onClick={handleClickShowPassword}   onMouseDown={handleMouseDownPassword}/>
         </Form.Group>
           {showErrorDate ?
           <p>c'è qualche errorre nei dati inserti</p>
