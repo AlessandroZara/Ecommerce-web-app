@@ -36,9 +36,14 @@ function Register() {
 
   
  const register = () => {
-    if (!name && !password ) alert("Please enter name e password");
-    registerWithEmailAndPassword(name, email, password);
-    history("/")
+    if (!name || !password || !email  ) {
+      alert("Please enter name ,email e password")
+    history("/signup");
+    }else{
+      registerWithEmailAndPassword(name, email, password);
+      history("/")
+    }
+   
   };
   
   return (

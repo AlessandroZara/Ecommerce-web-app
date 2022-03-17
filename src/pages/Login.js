@@ -132,10 +132,8 @@ export default function Login() {
           Submit
         </Button>
       </Form>
-      <p><strong>P.S:</strong> la email da inserire è: "test@gmail.com" <br/>
-        La password è: "password" 
-      </p>
-     <Link to ="/signup">Registrati</Link> 
+      <br />
+      <p>Non hai un account? <Link to ="/signup">Registrati</Link> </p>
       </Container>
       <Footer>
       <Title>E-commerce</Title>
