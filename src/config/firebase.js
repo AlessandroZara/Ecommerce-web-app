@@ -25,5 +25,4 @@ export const auth =getAuth(app);
 export const db = getDatabase();
 
 export const dbFire =getFirestore(app)
-
-
+ 

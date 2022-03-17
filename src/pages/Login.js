@@ -9,7 +9,7 @@ import styled from "styled-components";
 import "./Login.css";
 import {auth} from '../config/firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
-
+import {Link} from 'react-router-dom';
 
 export default function Login() {
   const { setUser } = LoginState();
@@ -135,6 +135,7 @@ export default function Login() {
       <p><strong>P.S:</strong> la email da inserire è: "test@gmail.com" <br/>
         La password è: "password" 
       </p>
+     <Link to ="/signup">Registrati</Link> 
       </Container>
       <Footer>
       <Title>E-commerce</Title>

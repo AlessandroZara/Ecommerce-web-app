@@ -1,78 +1,88 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import {Link} from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+ createUserWithEmailAndPassword,
+} from "firebase/auth";
+import {auth,dbFire} from '../../config/firebase';
+import {
+    collection,
+    addDoc,
+  } from "firebase/firestore";
+  import PasswordChecklist from "react-password-checklist"
+import "./SignUp.css";
+function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("")
+  const history = useNavigate();
 
-export default function SignUpForm(){
-    const [email,emailSetter]=useState("")
-    const [password,setPassword]=useState("")
-    const [error,setError]=useState("")
-    const [success,setSuccess]=useState("")
-    const [user,setUser]=useState("")
-    const [hold,setHold]=useState(true)
 
-    const checkInput=()=>{
-        if(email.length>40){
-            setError("Email too long")
-        }else{
-            setError("")
-        }
+  const registerWithEmailAndPassword = async (name, email, password) => {
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const user = res.user;
+      await addDoc(collection(dbFire, "users"), {
+        uid: user.uid,
+        name,
+        authProvider: "local",
+        email,
+      });
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
     }
+  };
 
-    useEffect(checkInput,[email])
-
-    async function handleSignUp(){
-        const baseUrl="https://reqres.in/"
-        const endPoint=baseUrl+"api/users"
-
-        const payload={ //dati che ci serve ricevere
-            user,
-            password
-        }
-
-        try {
-            const res = await axios.post(
-                endPoint,
-                payload
-            )
-            console.log(res) // Controllo se arrivano i dati
-            console.log("ID utente: ", res.data.id)
-            console.log("Status: ", res.status)
-            setSuccess(res.status)
-            setHold(false)
-            
-        } catch (e) {
-            console.log("Errore: ", e)
-        }
-    }
-
-    const handleChange = (obj) => {
-        const newValue=obj.target.value
-        emailSetter(newValue)
-    }
-
-    const handlePasswordChange = (obj) =>{
-        const newValue = obj.target.value
-        setPassword(newValue)
-    }
-
-    const handleUserChange = (obj) =>{
-        const newValue = obj.target.value
-        setUser(newValue)
-    }
-
-    return <div>
-        {error && <p>Errore {error}</p>}
-        
-        <input type={"text"} onChange={handleUserChange} value={user} placeholder={"Username"}/>
-        <input type={"password"} onChange={handlePasswordChange} value={password} placeholder={"Password"}/>
-       <Link to="/"> <button onClick={handleSignUp} >Send</button></Link>
-        {hold && <div>Inserisci nome utente e password</div>}
-        
-        {success && <>
-            <div>Piacere di rivederti {user}</div>
-            <div>Lo status della chiamata è: {success}</div>
-        </>
-        }
-        
+  
+ const register = () => {
+    if (!name && !password ) alert("Please enter name e password");
+    registerWithEmailAndPassword(name, email, password);
+    history("/")
+  };
+  
+  return (
+    <div className="register">
+      <div className="register__container">
+        <input
+          type="text"
+          className="register__textBox"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Full Name"
+        />
+        <input
+          type="text"
+          className="register__textBox"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="E-mail Address"
+        />
+        <input
+          type="password"
+          className="register__textBox"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <input type="password" 
+                   onChange={e => setPasswordAgain(e.target.value)}>
+            </input>
+        <PasswordChecklist
+                rules={["minLength","specialChar",
+                        "number","capital",]}
+                minLength={5}
+                value={password}
+                valueAgain={passwordAgain}
+            />
+        <button className="register__btn" onClick={register}>
+          Register
+        </button>
+        <div>
+          Already have an account? <Link to="/login">Login</Link> now.
+        </div>
+      </div>
     </div>
+  );
 }
+export default Register;

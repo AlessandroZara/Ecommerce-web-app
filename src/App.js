@@ -11,7 +11,7 @@ import Thanks from "./pages/ThankYouPage";
 import { LoginState } from "./context/contextLogIn";
 import CookieConsent from "react-cookie-consent";
 import ProdottiPage from "./pages/Prodotti";
-
+import SignUp from './components/Form/SignUpForm'
 function App() {
   return (
     // provider carrello
@@ -47,6 +47,7 @@ function App() {
         />
 
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
 
         <Route
           path="/product/:id"
