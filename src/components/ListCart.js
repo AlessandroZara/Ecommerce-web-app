@@ -4,11 +4,12 @@ import Product from "./Product";
 import { useNavigate } from "react-router-dom";
 
 
-export default function ListCart({ data }) {
+
+export default function ListCart({ data}) {
   const navigate = useNavigate(); //navigate in input prende più parametri, guardare documentazione
-  const { cart, ThankDelete, sumPrice } = CartState();
+  const { cart, ThankDelete, sumPrice,} = CartState();
   
-  return (
+    return (
     <>
       <ListGroup className="cart__cart" as="ul">
         {cart.map((product) => (
@@ -35,7 +36,7 @@ export default function ListCart({ data }) {
             {/* <Button
               id="buy"
               onClick={() => {
-                Empty(data);
+                Empty()
               }}
             >
               Svuota Carrello

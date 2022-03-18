@@ -101,22 +101,7 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  // const Empty = async (product) => {
-  //   try {
-      
-  //     await deleteDoc(doc(dbFire, "product", product.id));
-      
-  //     setCart([]) 
-  //   } catch (err) {
-  //     if (err.response) {
-  //       console.warn(err.response.data);
-  //     } else {
-  //       console.warn(err);
-  //     }
-  //   }
-  // };
-
-  const ThankDelete = (product) => {
+ const ThankDelete = (product) => {
     try {
        deleteDoc(doc(dbFire, "product",product));
       setCart([]);

@@ -30,7 +30,7 @@ function Register() {
     } catch (err) {
       console.error(err);
       
-      if(err.code == 'auth/email-already-in-use'){
+      if(err.code === 'auth/email-already-in-use'){
         history("/signup");
         alert("Questa email esiste già.\nDopo aver cliccato sul pulsante 'OK' ritornerai alla pagina di registrazione");
       }
@@ -44,13 +44,13 @@ function Register() {
 
  const register = () => {
     if (!name || !password || !email  ) {
-      alert("Please enter name ,email e password")
+      alert("Inseirsci sia nome che password che email")
     history("/signup");
     }else if(password.length < 6){
-      alert("your password not less than 6 characters")
+      alert("la tua password è infeire a 6 caratteri")
       history("/signup");
     }else if(test ===false ){
-      alert("password not match pattern")
+      alert("La password non corrisponde alle caratteristiche richieste")
     history("/signup");
     }else{
       registerWithEmailAndPassword(name, email, password);
