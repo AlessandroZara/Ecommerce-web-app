@@ -14,7 +14,6 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [passwordAgain, setPasswordAgain] = useState("")
   const history = useNavigate();
 
 
@@ -34,10 +33,18 @@ function Register() {
     }
   };
 
-  
+  const checkPW =/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/
+  const test =checkPW.test(password)
+  console.log(test)
  const register = () => {
     if (!name || !password || !email  ) {
       alert("Please enter name ,email e password")
+    history("/signup");
+    }else if(password.length < 6){
+      alert("your password not less than 6 characters")
+      history("/signup");
+    }else if(test ===false ){
+      alert("password not match pattern")
     history("/signup");
     }else{
       registerWithEmailAndPassword(name, email, password);
@@ -70,15 +77,11 @@ function Register() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <input type="password" 
-                   onChange={e => setPasswordAgain(e.target.value)}>
-            </input>
         <PasswordChecklist
                 rules={["minLength","specialChar",
                         "number","capital",]}
-                minLength={5}
+                minLength={6}
                 value={password}
-                valueAgain={passwordAgain}
             />
         <button className="register__btn" onClick={register}>
           Register
