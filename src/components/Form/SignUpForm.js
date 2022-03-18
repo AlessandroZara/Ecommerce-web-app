@@ -29,13 +29,19 @@ function Register() {
       });
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      
+      if(err.code == 'auth/email-already-in-use'){
+        history("/signup");
+        alert("Questa email esiste già.\nDopo aver cliccato sul pulsante 'OK' ritornerai alla pagina di registrazione");
+      }
     }
   };
 
+  
   const checkPW =/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/
   const test =checkPW.test(password)
   console.log(test)
+
  const register = () => {
     if (!name || !password || !email  ) {
       alert("Please enter name ,email e password")
