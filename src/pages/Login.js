@@ -8,7 +8,7 @@ import {Container} from "react-bootstrap";
 import styled from "styled-components";
 import "./Login.css";
 import {auth} from '../config/firebase';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword  } from "firebase/auth";
 import {Link} from 'react-router-dom';
 
 export default function Login() {
@@ -80,7 +80,7 @@ export default function Login() {
   //     }
   //   }
   // };
-
+ 
   const Footer = styled.div`
     display: flex;
     flex-direction: column;
@@ -135,6 +135,7 @@ export default function Login() {
       </Form>
       <br />
       <p>Non hai un account? <Link to ="/signup">Registrati</Link> </p>
+      <p>Non ti ricordi la password? <Link to ="/resetpassword">Reset Password</Link> </p>
       </Container>
       <Footer>
       <Title>E-commerce</Title>
