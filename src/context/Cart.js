@@ -100,11 +100,34 @@ const CartProvider = ({ children }) => {
       }
     }
   };
-
+  const Empty = async (product) => {
+    try {
+      product.map(ele =>(
+        console.log(ele),
+        product = doc(dbFire, 'product', ele.id),
+         deleteDoc(product),
+         console.log(product)
+      // Remove the 'capital' field from the document
+      ));
+      setCart([])
+    } catch (err) {
+      if (err.response) {
+        console.warn(err.response.data);
+      } else {
+        console.warn(err);
+      }
+    }
+  };
  const ThankDelete = (product) => {
     try {
-       deleteDoc(doc(dbFire, "product",product));
-      setCart([]);
+      product.map(ele =>(
+        console.log(ele),
+        product = doc(dbFire, 'product', ele.id),
+         deleteDoc(product),
+         console.log(product)
+      // Remove the 'capital' field from the document
+      ));
+      setCart([])
     } catch (err) {
       if (err.response) {
         console.warn(err.response.data);
@@ -132,6 +155,7 @@ const CartProvider = ({ children }) => {
         ThankDelete,
         updateCart,
         sumPrice,
+        Empty
       }}
     >
       {children}
