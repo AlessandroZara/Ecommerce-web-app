@@ -102,13 +102,12 @@ const CartProvider = ({ children }) => {
   };
   const Empty = async (product) => {
     try {
-      product.map(ele =>(
-        console.log(ele),
+      product.map((ele) => {
+        return (
         product = doc(dbFire, 'product', ele.id),
-         deleteDoc(product),
-         console.log(product)
-      // Remove the 'capital' field from the document
-      ));
+        deleteDoc(product)
+        )
+      })
       setCart([])
     } catch (err) {
       if (err.response) {
@@ -120,13 +119,12 @@ const CartProvider = ({ children }) => {
   };
  const ThankDelete = (product) => {
     try {
-      product.map(ele =>(
-        console.log(ele),
+      product.map((ele) => {
+        return (
         product = doc(dbFire, 'product', ele.id),
-         deleteDoc(product),
-         console.log(product)
-      // Remove the 'capital' field from the document
-      ));
+        deleteDoc(product)
+        )
+      })
       setCart([])
     } catch (err) {
       if (err.response) {
