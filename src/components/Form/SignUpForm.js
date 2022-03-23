@@ -47,7 +47,7 @@ function Register() {
       alert("Inseirsci sia nome che password che email")
     history("/signup");
     }else if(password.length < 6){
-      alert("la tua password è infeire a 6 caratteri")
+      alert("la tua password è inferiore a 6 caratteri")
       history("/signup");
     }else if(test ===false ){
       alert("La password non corrisponde alle caratteristiche richieste")
