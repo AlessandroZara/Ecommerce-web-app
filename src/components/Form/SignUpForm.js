@@ -38,7 +38,7 @@ function Register() {
   };
 
   
-  const checkPW =/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/
+  const checkPW =/^(?=.*\d)(?=.*[-_.,!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/
   const test =checkPW.test(password)
   console.log(test)
 
@@ -88,12 +88,18 @@ function Register() {
                         "number","capital",]}
                 minLength={6}
                 value={password}
+                messages={{
+                  minLength: "La password deve contenere almeno 6 caratteri",
+                  specialChar: "La password deve contenere almeno 1 carattere speciale",
+                  number: "La password deve contenere almeno 1 numero.",
+                  capital: "La password deve contenere almeno 1 lettera maiuscola",
+                }}
             />
         <button className="register__btn" onClick={register}>
-          Register
+          Registrati
         </button>
         <div>
-          Already have an account? <Link to="/login">Login</Link> now.
+          Hai già un account? Vai alla <Link to="/login">Login</Link>
         </div>
       </div>
     </div>
