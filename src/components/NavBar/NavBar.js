@@ -8,6 +8,10 @@ import ButtonDark from "../ThemeBlack/ButtonDark";
 import { FaCartArrowDown } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
+import { signOut } from "firebase/auth";
+import {auth} from '../../config/firebase'
+
+
 
 
 function NavBar() {
@@ -17,7 +21,8 @@ function NavBar() {
   // }, 0);
 
   const { user, setUser } = useContext(LoginContext);
-
+        const authentication = auth
+       
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="fixed-top" >
       <Container>
@@ -46,6 +51,12 @@ function NavBar() {
               <Nav.Link
                 onClick={() => {
                   setUser(null);
+                  signOut(authentication).then(() => {
+                    console.log(user + " è stato disconnesso")
+                    console.log(authentication)
+                  }).catch((error) => {
+                  console.log(error)
+                });
                 }}
               >
                 <FaSignOutAlt size={28} />

@@ -48,6 +48,7 @@ export default function Product({
                 if (user) {
                   addToCart(data);
                   console.log(data)
+                  
                 } else {
                   setShowError(true);
                   sendMessage();

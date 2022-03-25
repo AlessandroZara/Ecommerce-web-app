@@ -18,7 +18,7 @@ export default function Product({ sendMessage }) {
   const [showErrorProduct, setShowErrorProduct] = useState(false);
 
   const { addToCart } = CartState();
-
+  
   const sendMessageProduct = () => {
     setTimeout(() => {
       setShowErrorProduct(false);
@@ -101,6 +101,7 @@ export default function Product({ sendMessage }) {
                   onClick={() => {
                     if (user) {
                       addToCart(data);
+                     
                     } else {
                       setShowErrorProduct(true);
                       sendMessageProduct();

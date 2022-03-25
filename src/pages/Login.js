@@ -8,7 +8,7 @@ import {Container} from "react-bootstrap";
 import styled from "styled-components";
 import "./Login.css";
 import {auth} from '../config/firebase';
-import { signInWithEmailAndPassword  } from "firebase/auth";
+import { signInWithEmailAndPassword} from "firebase/auth";
 import {Link} from 'react-router-dom';
 
 export default function Login() {
@@ -35,11 +35,11 @@ export default function Login() {
   const handleLogin = async (email, password) => {
     
     try {
-       await signInWithEmailAndPassword(auth, email, password)
+      await signInWithEmailAndPassword(auth, email, password)
       .then((response) => {
         console.log(response,email,password)
         console.log(response.user.email)
-        setUser(response.user.email);
+        setUser(response.user.uid);
     });  
       navigate(`/`)
       
@@ -124,7 +124,7 @@ export default function Login() {
           <Form.Control type={values.showPassword ? "text" : "password"} placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" onClick={handleClickShowPassword}   onMouseDown={handleMouseDownPassword}/>
+          <Form.Check type="checkbox" label="Mostra Password" onClick={handleClickShowPassword}   onMouseDown={handleMouseDownPassword}/>
         </Form.Group>
           {showErrorDate ?
           <p>c'è qualche errorre nei dati inserti</p>
