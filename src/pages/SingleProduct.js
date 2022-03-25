@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import NavBar from "../components/NavBar/NavBar";
 import { Row, Carousel } from "react-bootstrap";
 import styled from "styled-components";
-import Product from "../components/Product";
+import Product from "../components/ListProduct";
 import belivemaglia from "../images/belivemaglia.jpg";
 import nike from "../images/nike.jpg";
 import sportcinese from "../images/sportcinese.jpg";

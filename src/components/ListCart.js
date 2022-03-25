@@ -1,6 +1,6 @@
-import { CartState } from "../context/Cart";
+import { CartState } from "../context/ContextCart";
 import { Button, ListGroup } from "react-bootstrap";
-import Product from "./Product";
+import Product from "./ListProduct";
 import { useNavigate } from "react-router-dom";
 
 

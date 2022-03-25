@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar/NavBar";
 import Hero from "../components/Hero/Hero";
 import styled from "styled-components";
 import { Row, Container } from "react-bootstrap";
-import Product from "../components/Product";
+import Product from "../components/ListProduct";
 import {db} from '../config/firebase';
 import { ref,onValue } from "firebase/database";
 

@@ -1,9 +1,9 @@
 // https://placeholder.com/ per le immagini
 import { Button, Row } from "react-bootstrap";
-import { CartState } from "../context/Cart";
+import { CartState } from "../context/ContextCart";
 import { LoginState } from "../context/contextLogIn";
 import { Col, Card } from "react-bootstrap";
-import Counter from "../components/Counter/Counter";
+import Counter from "./Counter/Counter";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 

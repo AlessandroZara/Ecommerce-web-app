@@ -1,6 +1,6 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useContext } from "react";
-import { CartContext } from "../../context/Cart";
+import { CartContext } from "../../context/ContextCart";
 import { LoginContext } from "../../context/contextLogIn";
 import { Link } from "react-router-dom";
 import "./NavBar.css";

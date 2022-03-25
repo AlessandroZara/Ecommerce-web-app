@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { CartState } from "../../context/Cart";
+import { CartState } from "../../context/ContextCart";
 
 export default function Counter({ initialValue, product, price ,available}) {
   const { updateCart } = CartState();

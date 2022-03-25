@@ -5,12 +5,12 @@ import Login from "./pages/Login";
 // import Product from './pages/Product'
 import NotFound from "./pages/NotFound";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Product from "./pages/Product";
+import Product from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import Thanks from "./pages/ThankYouPage";
 import { LoginState } from "./context/contextLogIn";
 import CookieConsent from "react-cookie-consent";
-import ProdottiPage from "./pages/Prodotti";
+import ProdottiPage from "./pages/SingleProduct";
 import SignUp from './components/Form/SignUpForm';
 import ResetPassword from './components/Form/ResetPassword'
 function App() {

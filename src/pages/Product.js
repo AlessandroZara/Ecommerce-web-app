@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
 import { Button, Col, Container,Row, Spinner } from "react-bootstrap";
-import { CartState } from "../context/Cart";
+import { CartState } from "../context/ContextCart";
 import { LoginState } from "../context/contextLogIn";
 import styled from "styled-components";
 import {db} from '../config/firebase';

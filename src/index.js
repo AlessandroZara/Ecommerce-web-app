@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 // import Fetch from './Fetch';
 import reportWebVitals from './reportWebVitals';
-import Context from './context/Cart';
+import Context from './context/ContextCart';
 import LoginContext from "./context/contextLogIn"
 ReactDOM.render(
   <React.StrictMode>
