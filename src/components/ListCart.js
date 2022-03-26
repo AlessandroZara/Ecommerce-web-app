@@ -2,20 +2,16 @@ import { CartState } from "../context/ContextCart";
 import { Button, ListGroup } from "react-bootstrap";
 import Product from "./ListProduct";
 import { useNavigate } from "react-router-dom";
-import { LoginState } from "../context/contextLogIn";
+//import { LoginState } from "../context/contextLogIn";
 
 
 export default function ListCart({ data}) {
   const navigate = useNavigate(); //navigate in input prende più parametri, guardare documentazione
   const { cart, ThankDelete, sumPrice,Empty} = CartState();
   
-  const { user } = LoginState();
-     
-    return (
+      return (
     <>
-    {
-      user ?
-      <ListGroup className="cart__cart" as="ul">
+        <ListGroup className="cart__cart" as="ul">
         {cart.map((product) => (
           <>
             <Product key={product.id} data={product} showButtonCart />
@@ -23,9 +19,9 @@ export default function ListCart({ data}) {
         ))}
       </ListGroup>
     
-    :null}
+   
 
-    {cart.length >= + user ? (
+    {cart.length >= 1 ? (
         <>
           <h3>{sumPrice.toFixed(2)} &euro;</h3>
           <Button
