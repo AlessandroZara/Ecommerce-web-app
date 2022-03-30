@@ -34,7 +34,7 @@ export default function Product({
           <Link to={`/product/${data.id}`}>
             <Card.Img
               variant="top"
-              src="https://via.placeholder.com/200.png/09f/fff"
+              src={data.img}
             />
           </Link>
         ) : null}
@@ -46,8 +46,8 @@ export default function Product({
             <Button
               onClick={() => {
                 if (user) {
-                  addToCart(data);
-                  console.log(data)
+                  addToCart(data,user);
+                  console.log(user)
                   
                 } else {
                   setShowError(true);

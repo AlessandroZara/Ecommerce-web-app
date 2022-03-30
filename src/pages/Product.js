@@ -77,7 +77,6 @@ export default function Product({ sendMessage }) {
   const Text = styled.div`
     font-size: 0.8rem;
   `;
-  const imgUrl="https://via.placeholder.com/300.png/09f/fff";
   return (
     <>
       <NavBar />
@@ -90,7 +89,7 @@ export default function Product({ sendMessage }) {
             {" "}
             <Row>
               <Col sm={8}>
-                <img src={imgUrl} alt="massimiliano grazie" />
+                <img src={data.img} alt="massimiliano grazie" width ="300"/>
               </Col>
               <Col className="text__col" sm={4}>
                 <h1>{data.name}</h1>
@@ -101,7 +100,7 @@ export default function Product({ sendMessage }) {
                   onClick={() => {
                     if (user) {
                       addToCart(data);
-                     
+                      console.log(data)
                     } else {
                       setShowErrorProduct(true);
                       sendMessageProduct();

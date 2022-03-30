@@ -14,19 +14,19 @@ export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
- 
+  
+
   const productApi = async () => {
+    
     try {
       const arr = [];
       const querySnapshot = await getDocs(collection(dbFire, "product"));
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-        arr.push(doc.data());
-        console.log(arr);
-        
+          arr.push(doc.data());
+          
       });
-      setCart(arr);
+      setCart(arr);      
     } catch (err) {
       if (err.response) {
         console.warn(err.response.data);
@@ -36,7 +36,7 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  const addToCart = async (product) => {
+  const addToCart = async (product,user) => {
     
     const cityRef = doc(dbFire, "product", product.id);
     setDoc(cityRef, {
@@ -45,11 +45,12 @@ const CartProvider = ({ children }) => {
       quantity: product.quantity,
       price: product.price,
       available: product.available,
+      user: user
     });
-       
+    
     console.log(product.id);
     console.log("Document written with ID: ", cityRef.id);
-
+   
     // id: product.id,
     // name:product.name,
     // quantity:product.quantity,
@@ -65,7 +66,6 @@ const CartProvider = ({ children }) => {
       await updateDoc(RefProd, {
       quantity:(product.quantity = count),       
       });
-      
       console.log(product.id)
       productApi()
     } catch (err) {
