@@ -9,6 +9,10 @@ import {
   deleteDoc,
   deleteField,
 } from "firebase/firestore";
+import emailjs from '@emailjs/browser';
+import{ init } from '@emailjs/browser';
+
+
 
 export const CartContext = createContext();
 
@@ -24,10 +28,10 @@ const CartProvider = ({ children }) => {
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
           arr.push(doc.data());
-          
+          console.log(arr)
       });
-      
-      setCart(arr);      
+      setCart(arr);
+            
     } catch (err) {
       if (err.response) {
         console.warn(err.response.data);
@@ -38,6 +42,7 @@ const CartProvider = ({ children }) => {
   };
 
   const addToCart = async (product,user) => {
+    
     const cityRef = doc(dbFire, "product", product.id);
     setDoc(cityRef, {
       id: product.id,
@@ -47,6 +52,7 @@ const CartProvider = ({ children }) => {
       available: product.available,
       user: user
     });
+    
     console.log(product.id);
     console.log("Document written with ID: ", cityRef.id);
    
@@ -55,7 +61,8 @@ const CartProvider = ({ children }) => {
     // quantity:product.quantity,
     // available:product.available,
     // price:product.price
-     productApi();
+    productApi();
+     
   };
 
   const updateCart = async (product, count) => {
@@ -116,7 +123,23 @@ const CartProvider = ({ children }) => {
       }
     }
   };
- const ThankDelete = (product) => {
+ const ThankDelete = (product,user) => {
+  const nameProduct =product.map((obj) => {
+    return (obj.name) 
+  }
+  )
+  var templateParams = {
+    user_name: user,
+    message: `Grazie Mille per Aver comprato questi prodotti: ${nameProduct} ,'`
+  };
+  init("ogEYvQRjM6yFTn1Gj");
+  emailjs.send('form', 'template_dg4f7pl', templateParams)
+    .then(function(response) {
+       console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+       console.log('FAILED...', error);
+    });
+    console.log(user)
     try {
       product.map((ele) => {
         return (

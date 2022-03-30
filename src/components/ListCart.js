@@ -3,6 +3,7 @@ import { Button, ListGroup } from "react-bootstrap";
 import Product from "./ListProduct";
 import { useNavigate } from "react-router-dom";
 import { LoginState } from "../context/contextLogIn";
+ 
 // import { useEffect
 //  } from "react";
 //  import { dbFire } from "../config/firebase";
@@ -15,7 +16,8 @@ export default function ListCart({ data }) {
   const navigate = useNavigate(); //navigate in input prende più parametri, guardare documentazione
   const { cart, ThankDelete, sumPrice, Empty } = CartState();
   const { user } = LoginState();
-  
+
+
   // useEffect(() => {
   //   (async () => {
   //     const querySnapshot = await getDocs(collection(dbFire, "product"));
@@ -40,14 +42,13 @@ export default function ListCart({ data }) {
         </>
       ))}
     </ListGroup>
-        
       {cart.length >= 1 ? (
         <>
           <h3>{sumPrice.toFixed(2)} &euro;</h3>
           <Button
             id="buy"
             onClick={() => {
-              ThankDelete(cart);
+              ThankDelete(cart,user);
               console.log("sono in ListCard", cart);
               navigate(`/thankyoupage`, { state: { cart, sumPrice } }); // "state" è un parametro dello useNavigate
               
