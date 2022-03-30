@@ -26,6 +26,7 @@ const CartProvider = ({ children }) => {
           arr.push(doc.data());
           
       });
+      
       setCart(arr);      
     } catch (err) {
       if (err.response) {
@@ -37,7 +38,6 @@ const CartProvider = ({ children }) => {
   };
 
   const addToCart = async (product,user) => {
-    
     const cityRef = doc(dbFire, "product", product.id);
     setDoc(cityRef, {
       id: product.id,
@@ -47,7 +47,6 @@ const CartProvider = ({ children }) => {
       available: product.available,
       user: user
     });
-    
     console.log(product.id);
     console.log("Document written with ID: ", cityRef.id);
    

@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 // import Product from './pages/Product'
 import NotFound from "./pages/NotFound";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Product from "./pages/Product";
+import PageSingleProduct from "./pages/PageSingleProduct";
 import Cart from "./pages/Cart";
 import Thanks from "./pages/ThankYouPage";
 import { LoginState } from "./context/contextLogIn";
@@ -26,7 +26,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/prodotto" element={<Product />} />
+        <Route path="/prodotto" element={<PageSingleProduct />} />
         <Route path="/prodotti" element={<ProdottiPage />} />
 
         <Route
@@ -53,7 +53,7 @@ function App() {
        
         <Route
           path="/product/:id"
-          element={<Product/>}
+          element={<PageSingleProduct/>}
         /> 
 
         <Route path="*" element={<NotFound />} />
