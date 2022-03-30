@@ -39,7 +39,7 @@ export default function Login() {
       .then((response) => {
         console.log(response,email,password)
         console.log(response.user.email)
-        setUser(response.user.uid);
+        setUser(response.user.email);
     });  
       navigate(`/`)
       

@@ -128,7 +128,9 @@ const CartProvider = ({ children }) => {
     return (obj.name) 
   }
   )
+
   var templateParams = {
+    user_email:user,
     user_name: user,
     message: `Grazie Mille per Aver comprato questi prodotti: ${nameProduct} ,'`
   };
