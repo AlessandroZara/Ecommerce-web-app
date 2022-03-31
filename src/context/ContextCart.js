@@ -72,7 +72,7 @@ const CartProvider = ({ children }) => {
       await updateDoc(RefProd, {
       quantity:(product.quantity = count),       
       });
-      console.log(product.id)
+      //console.log(product.id)
       productApi()
     } catch (err) {
       if (err.response) {

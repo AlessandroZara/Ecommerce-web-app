@@ -7,6 +7,7 @@ import Counter from "./Counter/Counter";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+
 export default function Product({
   data,
   showImage, //questa è true o false
@@ -26,7 +27,7 @@ export default function Product({
       setShowError(false);
     }, 2000);
   };
-
+ 
   return (
     <Col>
       <Card className="card__container">
@@ -47,7 +48,7 @@ export default function Product({
               onClick={() => {
                 if (user) {
                   addToCart(data,user);
-                  console.log(user)
+                  
                   
                 } else {
                   setShowError(true);
@@ -70,7 +71,7 @@ export default function Product({
               <Button
                 id="delete"
                 onClick={() => {
-                  Delete(data);
+                  Delete(data,user);
                 }}
               >
                 X

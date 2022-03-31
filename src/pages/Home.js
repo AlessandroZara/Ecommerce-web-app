@@ -6,11 +6,12 @@ import { Row, Container } from "react-bootstrap";
 import Product from "../components/ListProduct";
 import {db} from '../config/firebase';
 import { ref,onValue } from "firebase/database";
+import { LoginState } from "../context/contextLogIn";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-
+  const {user}=LoginState();
   
   useEffect(() => {
     ( () => {
@@ -76,7 +77,7 @@ export default function Home() {
         ) : data.length ? (
           <Row xs={1} md={5} className="g-4">
             {data.map((product) => (
-              <Product key={product.id} data={product} showImage showButton />
+              <Product key={product.id} data={product} user={user} showImage showButton />
             ))}
           </Row>
         ) : (

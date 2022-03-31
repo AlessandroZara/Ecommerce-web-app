@@ -5,6 +5,7 @@ import { CartState } from "../../context/ContextCart";
 export default function Counter({ initialValue, product, price ,available}) {
   const { updateCart } = CartState();
   const [count, setCounter] = useState(initialValue);
+ 
 
   function addCounter() {
       if(count >= 1 && count < available) {

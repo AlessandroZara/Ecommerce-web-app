@@ -11,6 +11,7 @@ import {auth} from '../config/firebase';
 import { signInWithEmailAndPassword} from "firebase/auth";
 import {Link} from 'react-router-dom';
 
+
 export default function Login() {
   const { setUser } = LoginState();
   const [showErrorDate, setShowErrorDate] = useState(false);
@@ -20,8 +21,6 @@ export default function Login() {
     password: "",
     showPassword: false,
   });
-  
-  
 
   const navigate = useNavigate()
  
@@ -37,10 +36,10 @@ export default function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password)
       .then((response) => {
-        console.log(response,email,password)
-        console.log(response.user.email)
         setUser(response.user.email);
-    });  
+        
+      }); 
+      
       navigate(`/`)
       
     } catch (err) {

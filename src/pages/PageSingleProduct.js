@@ -99,7 +99,7 @@ export default function Product({ sendMessage }) {
                 <Button 
                   onClick={() => {
                     if (user) {
-                      addToCart(data);
+                      addToCart(data,user);
                       console.log(data)
                     } else {
                       setShowErrorProduct(true);

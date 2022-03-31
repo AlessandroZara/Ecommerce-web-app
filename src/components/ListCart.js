@@ -60,7 +60,7 @@ export default function ListCart({ data }) {
           <Button
             id="buy"
             onClick={() => {
-              Empty(cart);
+              Empty(cart,user);
               console.log(user)
             }}
           >
