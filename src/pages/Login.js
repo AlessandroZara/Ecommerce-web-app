@@ -10,7 +10,7 @@ import "./Login.css";
 import {auth} from '../config/firebase';
 import { signInWithEmailAndPassword} from "firebase/auth";
 import {Link} from 'react-router-dom';
-
+import { CartState } from "../context/ContextCart";
 
 export default function Login() {
   const { setUser } = LoginState();
@@ -21,6 +21,7 @@ export default function Login() {
     password: "",
     showPassword: false,
   });
+  const {productApi} = CartState();
 
   const navigate = useNavigate()
  
@@ -36,8 +37,11 @@ export default function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password)
       .then((response) => {
-        setUser(response.user.email);
-        
+        setUser(response.user.uid);
+        console.log(response.user);
+        if(response.user.uid){
+          productApi()
+        }
       }); 
       
       navigate(`/`)

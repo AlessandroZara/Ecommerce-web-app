@@ -7,11 +7,24 @@ import Product from "../components/ListProduct";
 import {db} from '../config/firebase';
 import { ref,onValue } from "firebase/database";
 import { LoginState } from "../context/contextLogIn";
+import { onAuthStateChanged } from "firebase/auth";
+import {auth} from '../config/firebase';
+
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const {user}=LoginState();
+  const {user,setUser}=LoginState();
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+      console.log(uid);
+      setUser(uid);
+    } else {
+      setUser(null);
+    }
+  });
   
   useEffect(() => {
     ( () => {

@@ -27,10 +27,15 @@ const CartProvider = ({ children }) => {
       const querySnapshot = await getDocs(collection(dbFire, user));
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
+        
+        if(doc.data().user === user){ 
           arr.push(doc.data());
-          console.log(arr)
+            console.log(doc.data());
+            setCart(arr)
+          }else if(cart === []){
+            setCart([])
+          }
       });
-      setCart(arr);
             
     } catch (err) {
       if (err.response) {
@@ -97,8 +102,12 @@ const CartProvider = ({ children }) => {
         user:deleteField(product.user),
       });
       await deleteDoc(doc(dbFire, user, product.id));
-      
-      productApi(user);
+      if(cart.length > 1){
+        productApi(user);
+      }else{
+        setCart([])
+      }    
+
     } catch (err) {
       if (err.response) {
         console.warn(err.response.data);
@@ -162,6 +171,7 @@ const CartProvider = ({ children }) => {
 
   useEffect(() => {
     productApi();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sumPrice = cart.reduce((prev, current) => {
@@ -178,7 +188,8 @@ const CartProvider = ({ children }) => {
         ThankDelete,
         updateCart,
         sumPrice,
-        Empty
+        Empty,
+        productApi
       }}
     >
       {children}
