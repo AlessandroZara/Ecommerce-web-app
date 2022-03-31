@@ -9,6 +9,8 @@ import {
   deleteDoc,
   deleteField,
 } from "firebase/firestore";
+import { auth } from "../config/firebase";
+import {onAuthStateChanged} from 'firebase/auth'
 import emailjs from '@emailjs/browser';
 import{ init } from '@emailjs/browser';
 
@@ -138,20 +140,26 @@ const CartProvider = ({ children }) => {
     return (obj.name) 
   }
   )
-
-  var templateParams = {
-    user_email:user,
-    user_name: user,
-    message: `Grazie Mille per Aver comprato questi prodotti: ${nameProduct} ,'`
-  };
-  init("ogEYvQRjM6yFTn1Gj");
-  emailjs.send('form', 'template_dg4f7pl', templateParams)
-    .then(function(response) {
-       console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
-       console.log('FAILED...', error);
-    });
-    console.log(user)
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const userE = user.email;
+      var templateParams = {
+        user_email:userE,
+        user_name: userE,
+        message: `Grazie Mille per Aver comprato questi prodotti: ${nameProduct} ,'`
+      };
+      init("ogEYvQRjM6yFTn1Gj");
+      emailjs.send('form', 'template_dg4f7pl', templateParams)
+        .then(function(response) {
+           console.log('SUCCESS!', response.status, response.text);
+        }, function(error) {
+           console.log('FAILED...', error);
+        });
+        console.log(user)
+    } else {
+      //
+    }
+  });
     try {
       product.map((ele) => {
         return (
