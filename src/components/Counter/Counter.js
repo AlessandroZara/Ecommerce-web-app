@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { CartState } from "../../context/ContextCart";
+import { LoginState } from "../../context/contextLogIn";
 
 export default function Counter({ initialValue, product, price ,available}) {
   const { updateCart } = CartState();
   const [count, setCounter] = useState(initialValue);
- 
+  const {user} = LoginState();
 
   function addCounter() {
       if(count >= 1 && count < available) {
@@ -39,7 +40,7 @@ export default function Counter({ initialValue, product, price ,available}) {
       <div>
         <Button
           onClick={() => {
-            updateCart(product, count);
+            updateCart(product, count,user);
             console.log(product,count)
           }}
         >

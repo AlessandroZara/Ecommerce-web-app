@@ -20,11 +20,11 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   
 
-  const productApi = async () => {
+  const productApi = async (user) => {
     
     try {
       const arr = [];
-      const querySnapshot = await getDocs(collection(dbFire, "product"));
+      const querySnapshot = await getDocs(collection(dbFire, user));
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
           arr.push(doc.data());
@@ -43,7 +43,7 @@ const CartProvider = ({ children }) => {
 
   const addToCart = async (product,user) => {
     
-    const cityRef = doc(dbFire, "product", product.id);
+    const cityRef = doc(dbFire, user, product.id);
     setDoc(cityRef, {
       id: product.id,
       name: product.name,
@@ -61,19 +61,19 @@ const CartProvider = ({ children }) => {
     // quantity:product.quantity,
     // available:product.available,
     // price:product.price
-    productApi();
+    productApi(user);
      
   };
 
-  const updateCart = async (product, count) => {
+  const updateCart = async (product, count,user) => {
     try {
-      const RefProd = doc(dbFire, "product", product.id);
+      const RefProd = doc(dbFire, user, product.id);
       // Set the "capital" field of the city 'DC'
       await updateDoc(RefProd, {
       quantity:(product.quantity = count),       
       });
       //console.log(product.id)
-      productApi()
+      productApi(user)
     } catch (err) {
       if (err.response) {
         console.warn(err.response.data);
@@ -83,9 +83,9 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  const Delete = async (product) => {
+  const Delete = async (product,user) => {
     try {
-       const RefDele = doc(dbFire, "product", product.id);
+       const RefDele = doc(dbFire, user, product.id);
 
       // Remove the 'capital' field from the document
       await updateDoc(RefDele, {
@@ -94,10 +94,11 @@ const CartProvider = ({ children }) => {
         quantity: deleteField(product.quantity),
         price: deleteField(product.price),
         available: deleteField(product.available),
+        user:deleteField(product.user),
       });
-      await deleteDoc(doc(dbFire, "product", product.id));
+      await deleteDoc(doc(dbFire, user, product.id));
       
-      productApi();
+      productApi(user);
     } catch (err) {
       if (err.response) {
         console.warn(err.response.data);
@@ -106,11 +107,11 @@ const CartProvider = ({ children }) => {
       }
     }
   };
-  const Empty = async (product) => {
+  const Empty = async (product,user) => {
     try {
       product.map((ele) => {
         return (
-        product = doc(dbFire, 'product', ele.id),
+        product = doc(dbFire, user, ele.id),
         deleteDoc(product)
         )
       })

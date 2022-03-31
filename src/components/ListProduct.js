@@ -48,8 +48,7 @@ export default function Product({
               onClick={() => {
                 if (user) {
                   addToCart(data,user);
-                  
-                  
+                                    
                 } else {
                   setShowError(true);
                   sendMessage();
@@ -76,7 +75,7 @@ export default function Product({
               >
                 X
               </Button>
-              <Counter initialValue={data.quantity} product={data} price={data.price} available={data.available} />
+              <Counter initialValue={data.quantity} product={data} price={data.price} user ={user} available={data.available} />
             </Row>
           ) : null}
         </Card.Body>
