@@ -80,7 +80,7 @@ const CartProvider = ({ children }) => {
       quantity:(product.quantity = count),       
       });
       //console.log(product.id)
-      productApi(user)
+      productApi()
     } catch (err) {
       if (err.response) {
         console.warn(err.response.data);
