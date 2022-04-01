@@ -163,7 +163,7 @@ const CartProvider = ({ children }) => {
     try {
       product.map((ele) => {
         return (
-        product = doc(dbFire, 'product', ele.id),
+        product = doc(dbFire, user, ele.id),
         deleteDoc(product)
         )
       })
