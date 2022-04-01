@@ -33,10 +33,10 @@ const CartProvider = ({ children }) => {
         if(doc.data().user === user){ 
           arr.push(doc.data());
             console.log(doc.data());
-            setCart(arr)
+            setCart(arr);
           }else if(cart === []){
             setCart([])
-          }
+          }          
       });
             
     } catch (err) {
@@ -75,12 +75,19 @@ const CartProvider = ({ children }) => {
   const updateCart = async (product, count,user) => {
     try {
       const RefProd = doc(dbFire, user, product.id);
-      // Set the "capital" field of the city 'DC'
       await updateDoc(RefProd, {
       quantity:(product.quantity = count),       
       });
-      //console.log(product.id)
-      productApi()
+      const arr = [];
+      const querySnapshot = await getDocs(collection(dbFire, user));
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        arr.push(doc.data());
+        console.log(doc.data());
+      });
+        setCart(arr)
+      //console.log(product.id);
+
     } catch (err) {
       if (err.response) {
         console.warn(err.response.data);
@@ -136,6 +143,22 @@ const CartProvider = ({ children }) => {
     }
   };
  const ThankDelete = (product,user) => {
+
+  try {
+    product.map((ele) => {
+      return (
+      product = doc(dbFire, user, ele.id),
+      deleteDoc(product)
+      )
+    })
+    setCart([])
+  } catch (err) {
+    if (err.response) {
+      console.warn(err.response.data);
+    } else {
+      console.warn(err);
+    }
+  }
   const nameProduct =product.map((obj) => {
     return (obj.name) 
   }
@@ -160,21 +183,7 @@ const CartProvider = ({ children }) => {
       //
     }
   });
-    try {
-      product.map((ele) => {
-        return (
-        product = doc(dbFire, user, ele.id),
-        deleteDoc(product)
-        )
-      })
-      setCart([])
-    } catch (err) {
-      if (err.response) {
-        console.warn(err.response.data);
-      } else {
-        console.warn(err);
-      }
-    }
+   
   };
 
   useEffect(() => {
