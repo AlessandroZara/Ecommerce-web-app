@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import { dbFire } from "../config/firebase";
 import {
   collection,
@@ -29,16 +29,11 @@ const CartProvider = ({ children }) => {
       const querySnapshot = await getDocs(collection(dbFire, user));
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
+        arr.push(doc.data());
         
-        if(doc.data().user === user){ 
-          arr.push(doc.data());
-            console.log(doc.data());
-            setCart(arr);
-          }else if(cart === []){
-            setCart([])
-          }          
+        
       });
-            
+      setCart(arr)
     } catch (err) {
       if (err.response) {
         console.warn(err.response.data);
@@ -68,7 +63,7 @@ const CartProvider = ({ children }) => {
     // quantity:product.quantity,
     // available:product.available,
     // price:product.price
-    productApi(user);
+   await productApi(user);
      
   };
 
@@ -79,9 +74,16 @@ const CartProvider = ({ children }) => {
       await updateDoc(RefProd, {
       quantity:(product.quantity = count),       
       });
+      const arr = [];
+      const querySnapshot = await getDocs(collection(dbFire, user));
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        arr.push(doc.data());
+        
+        
+      });
       //console.log(product.id);
-      await productApi(user);
-      setCart(cart);
+      setCart(arr)
     } catch (err) {
       if (err.response) {
         console.warn(err.response.data);
@@ -180,10 +182,10 @@ const CartProvider = ({ children }) => {
    
   };
 
-  useEffect(() => {
-    productApi();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   productApi();
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const sumPrice = cart.reduce((prev, current) => {
     return prev + current.quantity * current.price;
