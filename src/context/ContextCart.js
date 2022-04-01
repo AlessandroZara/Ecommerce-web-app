@@ -139,22 +139,6 @@ const CartProvider = ({ children }) => {
     }
   };
  const ThankDelete = (product,user) => {
-
-  try {
-    product.map((ele) => {
-      return (
-      product = doc(dbFire, user, ele.id),
-      deleteDoc(product)
-      )
-    })
-    setCart([])
-  } catch (err) {
-    if (err.response) {
-      console.warn(err.response.data);
-    } else {
-      console.warn(err);
-    }
-  }
   const nameProduct =product.map((obj) => {
     return (obj.name) 
   }
@@ -179,6 +163,23 @@ const CartProvider = ({ children }) => {
       //
     }
   });
+  try {
+    product.map((ele) => {
+      return (
+      product = doc(dbFire, user, ele.id),
+      deleteDoc(product)
+      )
+    })
+    setCart([]);
+    
+  } catch (err) {
+    if (err.response) {
+      console.warn(err.response.data);
+    } else {
+      console.warn(err);
+    }
+  }
+  
    
   };
 
