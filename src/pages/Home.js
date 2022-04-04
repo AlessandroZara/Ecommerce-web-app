@@ -28,6 +28,8 @@ export default function Home() {
         const arrKeys =Object.values(ref);
         setData(arrKeys) // Qui viene trasformato in array perche lo stato è un array
         console.log(arrKeys) 
+
+        //recupero i prodotti dell'utente dal database ogni qualvolta ritorna sul sito(funzione che fornisce google firebase)
         onAuthStateChanged(auth, (user) => {
           if (user) {
             const uid = user.uid;

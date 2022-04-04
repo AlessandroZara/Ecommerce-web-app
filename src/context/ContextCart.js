@@ -21,7 +21,7 @@ export const CartContext = createContext();
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   
-
+  // funzione che legge i prodotti nel carrello
   const productApi = async (user) => {
     
     try {
@@ -42,7 +42,8 @@ const CartProvider = ({ children }) => {
       }
     }
   };
-
+  
+  // funzione che aggiunge un prodotto al carrello
   const addToCart = async (product,user) => {
     
     const cityRef = doc(dbFire, user, product.id);
@@ -67,6 +68,7 @@ const CartProvider = ({ children }) => {
      
   };
 
+  // funzione che aggiunge o rimuove la quantità di un prodotto dal carrello
   const updateCart = async (product, count,user) => {
     
     try {
@@ -92,9 +94,11 @@ const CartProvider = ({ children }) => {
       }
     }
   };
-
+  
+  // funzione che rimuove un singolo prodotto dal carrello (il simbolo della "X" accanto al prodotto)
   const Delete = async (product,user) => {
     try {
+      //questa parte è messa a disposizone da google firebase(guardare documentazione)
        const RefDele = doc(dbFire, user, product.id);
 
       // Remove the 'capital' field from the document
@@ -107,6 +111,10 @@ const CartProvider = ({ children }) => {
         user:deleteField(product.user),
       });
       await deleteDoc(doc(dbFire, user, product.id));
+      //fine parte google firebase
+
+      //se carrello ha un prodotto ancora a carrello parte la lettura del carrello
+      // altrimenti il carrello si azzera(solo parte frontend )
       if(cart.length > 1){
         productApi(user);
       }else{
@@ -121,10 +129,13 @@ const CartProvider = ({ children }) => {
       }
     }
   };
+
+  //Funzione che svuota il carrello compeltamente
   const Empty = async (product,user) => {
     try {
       product.map((ele) => {
         return (
+          //Guardare documentazioni firebase per vedere come eliminare prodotti (cancellare documento lo chiamano loro)
         product = doc(dbFire, user, ele.id),
         deleteDoc(product)
         )
@@ -138,11 +149,16 @@ const CartProvider = ({ children }) => {
       }
     }
   };
+
+  // funzione che ti fa comprare i prodotti messi a carrello e che invia una mail con i dati del carrello
  const ThankDelete = (product,user) => {
   const nameProduct =product.map((obj) => {
     return (obj.name) 
   }
   )
+  //Funzione messa a disposizione da firebase per recuperare i prodotti dal database 
+  //Più funzione messa a disposizione da emailjs per mandare le email
+  // (con poi tutte le personalizzazioni che ho settato per il mio progetto)
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const userE = user.email;
@@ -166,11 +182,11 @@ const CartProvider = ({ children }) => {
   try {
     product.map((ele) => {
       return (
-      product = doc(dbFire, user, ele.id),
+      product = doc(dbFire, user, ele.id),  //qui cancello i prodotti anche dal database (per poi quindi torglierli dal carrello)
       deleteDoc(product)
       )
     })
-    setCart([]);
+    setCart([]);// qui risetto il carrello (parte frontend) a zero
     
   } catch (err) {
     if (err.response) {
