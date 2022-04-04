@@ -10,33 +10,33 @@ import { FaUser } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 import { signOut } from "firebase/auth";
 import {auth} from '../../config/firebase'
-import {
-  getDocs,
-  collection,
-  deleteDoc,
-} from "firebase/firestore";
-import { dbFire } from "../../config/firebase";
+// import {
+//   getDocs,
+//   collection,
+//   deleteDoc,
+// } from "firebase/firestore";
+// import { dbFire } from "../../config/firebase";
 
 
 function NavBar() {
-  const { cart} = useContext(CartContext);
+  const { cart,setCart} = useContext(CartContext);
   // const sumProduct = cart.reduce((prev, current) => {
   //   return prev + current.quantity;
   // }, 0);
   const { user, setUser } = useContext(LoginContext);
         const authentication = auth
 
-  const EmptyNav= async ()=>{
-    const querySnapshot = await getDocs(collection(dbFire, user));
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-        if(doc.data().user === user){
-          console.log(doc.data());
-          deleteDoc(doc.ref);
-        }
-    });
+  // const EmptyNav= async ()=>{
+  //   const querySnapshot = await getDocs(collection(dbFire, user));
+  //   querySnapshot.forEach((doc) => {
+  //     // doc.data() is never undefined for query doc snapshots
+  //       if(doc.data().user === user){
+  //         console.log(doc.data());
+  //         deleteDoc(doc.ref);
+  //       }
+  //   });
 
-  }
+  // }
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="fixed-top" >
       <Container>
@@ -68,10 +68,11 @@ function NavBar() {
                   signOut(authentication).then(() => {
                     console.log(user + " è stato disconnesso")
                     console.log(authentication)
+                    setCart([]);
                   }).catch((error) => {
                   console.log(error)
                 });
-                  EmptyNav()
+                
                 }}
               >
                 <FaSignOutAlt size={28} />

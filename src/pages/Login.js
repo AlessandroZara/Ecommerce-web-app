@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavBar from "../components/NavBar/NavBar";
 import { Button,Form } from "react-bootstrap";
 import { LoginState } from "../context/contextLogIn";
+import {CartState} from '../context/ContextCart';
 //import api from "../util/api.js";
 import {useNavigate} from "react-router-dom";
 import {Container} from "react-bootstrap";
@@ -10,10 +11,16 @@ import "./Login.css";
 import {auth} from '../config/firebase';
 import { signInWithEmailAndPassword} from "firebase/auth";
 import {Link} from 'react-router-dom';
-import { CartState } from "../context/ContextCart";
+// import {
+//   getDocs,
+//   collection,
+//   deleteDoc,
+// } from "firebase/firestore";
+// import { dbFire } from "../../config/firebase";
 
 export default function Login() {
   const { setUser } = LoginState();
+  
   const [showErrorDate, setShowErrorDate] = useState(false);
   const [mail, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,7 +32,7 @@ export default function Login() {
 
   const navigate = useNavigate()
  
-
+  
   const sendMessageError = () => {
     setTimeout(() => {
       setShowErrorDate(false);
@@ -40,10 +47,10 @@ export default function Login() {
         setUser(response.user.uid);
         console.log(response.user);
         if(response.user.uid){
-          productApi()
+          productApi(response.user.uid); 
         }
       }); 
-      
+     
       navigate(`/`)
       
     } catch (err) {

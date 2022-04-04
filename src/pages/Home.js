@@ -9,22 +9,15 @@ import { ref,onValue } from "firebase/database";
 import { LoginState } from "../context/contextLogIn";
 import { onAuthStateChanged } from "firebase/auth";
 import {auth} from '../config/firebase';
-
+import {CartState} from '../context/ContextCart';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const {user,setUser}=LoginState();
+  const {productApi} = CartState();
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-      console.log(uid);
-      setUser(uid);
-    } else {
-      setUser(null);
-    }
-  });
+  
   
   useEffect(() => {
     ( () => {
@@ -35,7 +28,16 @@ export default function Home() {
         const arrKeys =Object.values(ref);
         setData(arrKeys) // Qui viene trasformato in array perche lo stato è un array
         console.log(arrKeys) 
-        
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            const uid = user.uid;
+            console.log(uid);
+            setUser(uid);
+            productApi(uid);
+          } else {
+            setUser(null);
+          }
+        });
         })
       } catch (err) {
         console.warn(err);
@@ -43,6 +45,7 @@ export default function Home() {
         setLoading(false);
       }
     })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
        
