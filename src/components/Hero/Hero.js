@@ -1,15 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import foto from "../../images/pexels-karol-d-325153.jpg";
 
-const Image = styled.img`
+const Image = styled.div`
   height: 70vh;
   width: 100%;
-  object-fit: cover;
+  background-image: url(${foto});
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 `;
 
 const Container = styled.div`
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Title = styled.h1`
@@ -40,10 +45,7 @@ const Hero = () => {
     <>
       <Container>
         <Title>Home Page</Title>
-      <Image
-        src="https://images.pexels.com/photos/2541310/pexels-photo-2541310.jpeg"
-        fluid
-      />
+        <Image/>
       </Container>
     </>
   );
