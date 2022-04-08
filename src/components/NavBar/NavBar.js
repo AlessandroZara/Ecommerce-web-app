@@ -9,7 +9,9 @@ import { FaCartArrowDown } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 import { signOut } from "firebase/auth";
-import {auth} from '../../config/firebase'
+import {auth} from '../../config/firebase';
+import logo from "../../images/logo.png";
+
 // import {
 //   getDocs,
 //   collection,
@@ -38,15 +40,15 @@ function NavBar() {
 
   // }
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="fixed-top" >
+    <Navbar id ="navbar-custom" collapseOnSelect expand="lg" bg="dark" variant="dark" className="fixed-top" >
       <Container>
         <Link to="/">
           {" "}
           <Navbar.Brand>
             <img
-              src="https://www.crearelogo.it/wp-content/uploads/louis-vuitton-logo-300x223.jpg"
-              width="40"
-              height="40"
+              src={logo}
+              width="25%"
+              height="25%"
               className="d-inline-block align-top"
               alt="React Bootstrap logo"
             />

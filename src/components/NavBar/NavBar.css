@@ -5,3 +5,7 @@
     font-size: 1.5rem;
     font-weight: 600;
 }
+
+#navbar-custom {
+    background-color: rgb(20,29,55)!important ;
+}

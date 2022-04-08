@@ -96,11 +96,12 @@ export default function Login() {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #191919;
+    background:  rgb(20,29,55);
     color: white;
-    height: 8vh;
+    height:60px;
     font-size: 1.5rem;
     font-weight: bold;
+    margin-bottom: 0;
     `;
 
     const Title = styled.div`
@@ -117,10 +118,11 @@ export default function Login() {
   return (
     <>
       <NavBar />
-      <Container className="__form">
+      <Container fluid className="__form">
       <Form onSubmit={(e)=>{
          e.preventDefault();
          handleLogin(mail,password)}}>
+           <h2 style={{ fontSize: '40px',marginLeft:"35%"}}>Login</h2>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" value={mail} onChange={(e)=>{setEmail(e.target.value)}}/>

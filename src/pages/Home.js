@@ -64,13 +64,12 @@ export default function Home() {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #191919;
+    background:  rgb(20,29,55);
     color: white;
     height: 8vh;
     font-size: 1.5rem;
     font-weight: bold;
-    padding-bottom:1px;
-    height:50px
+    height:60px;
   `;
 
   const Title = styled.div`

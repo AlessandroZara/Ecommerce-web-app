@@ -5,8 +5,33 @@ import { sendPasswordResetEmail  } from "firebase/auth";
   import NavBar from "../NavBar/NavBar";
 import { Button,Form } from "react-bootstrap";
 import {Container} from "react-bootstrap";
-
+import styled from "styled-components";
+import "./ResetPassword.css";
 export default function ResetPassword() {
+
+  const Footer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:  rgb(20,29,55);
+    color: white;
+    height:60px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 250px;
+    `;
+    const Title = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    `;
+
+    const Text = styled.div`
+    font-size: 0.8rem;
+    `;
+
+
     const [mail, setEmail] = useState('');
 
     const navigate = useNavigate();
@@ -38,6 +63,7 @@ export default function ResetPassword() {
       <Form onSubmit={(e)=>{
          e.preventDefault();
          resetPassword(mail)}}>
+            <h2 style={{ fontSize: '30px',marginLeft:"35%"}}>Reset password</h2>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" value={mail} onChange={(e)=>{setEmail(e.target.value)}}/>
@@ -53,6 +79,10 @@ export default function ResetPassword() {
         </Button>
       </Form>
     </Container>
+    <Footer>
+      <Title>E-commerce</Title>
+      <Text>Copyright 2021</Text>
+      </Footer>
     </>
   )
 }

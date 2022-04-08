@@ -10,10 +10,44 @@ import {
   } from "firebase/firestore";
   import PasswordChecklist from "react-password-checklist"
 import "./SignUp.css";
+import styled from "styled-components";
+import NavBar from "../NavBar/NavBar";
+import { Container, Form,Button } from "react-bootstrap";
+import "../../pages/Login.css";
+
 function Register() {
+  const Footer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:  rgb(20,29,55);
+  color: white;
+  height:60px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0;
+  `;
+
+  const Title = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  `;
+
+  const Text = styled.div`
+  font-size: 0.8rem;
+  `;
+
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [values, setValues] = React.useState({
+    password: "",
+    showPassword: false,
+  });
   const history = useNavigate();
 
 
@@ -58,31 +92,48 @@ function Register() {
     }
    
   };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
   
   return (
-    <div className="register">
-      <div className="register__container">
-        <input
-          type="text"
-          className="register__textBox"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
-        />
-        <input
-          type="text"
-          className="register__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="register__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
+    <>
+    <NavBar />
+      <Container fluid className="__form">
+      <Form onSubmit={(e)=>{
+         e.preventDefault();
+         register(email,name,password)}}>
+          <h2 style={{ fontSize: '40px',marginLeft:"30%"}}>Registrati</h2>
+        <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Label>Nome Utente</Form.Label>
+          <Form.Control type="text" placeholder="Enter Name" value={name} onChange={(e)=>{setName(e.target.value)}}/>
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Indirizzo Email</Form.Label>
+          <Form.Control type="email" placeholder="Enter Name" value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type={values.showPassword ? "text" : "password"} placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="Mostra Password" onClick={handleClickShowPassword}   onMouseDown={handleMouseDownPassword}/>
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
         <PasswordChecklist
                 rules={["minLength","specialChar",
                         "number","capital",]}
@@ -95,14 +146,15 @@ function Register() {
                   capital: "La password deve contenere almeno 1 lettera maiuscola",
                 }}
             />
-        <button className="register__btn" onClick={register}>
-          Registrati
-        </button>
-        <div>
-          Hai già un account? Vai alla <Link to="/login">Login</Link>
-        </div>
-      </div>
-    </div>
+      </Form>
+      <br />
+      <p>Hai già un account? Vai alla <Link to="/login">Login</Link> </p>
+      </Container>
+      <Footer>
+      <Title>E-commerce</Title>
+      <Text>Copyright 2021</Text>
+      </Footer>
+     </>
   );
 }
 export default Register;
